@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModPackDad | Twitch Streamer & BotOrNot Creator</title>
+    <meta name="description" content="ModPackDad - Twitch streamer and creator of BotOrNot, the Fortnite replay analyzer that detects bot lobbies.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1a1a1f;
+            --bg-card: #222228;
+            --bg-card-hover: #2a2a32;
+            --accent-cyan: #00d4e5;
+            --accent-cyan-dim: #00a8b5;
+            --accent-cyan-glow: rgba(0, 212, 229, 0.4);
+            --metallic-light: #e8e8ec;
+            --metallic-mid: #a0a0a8;
+            --metallic-dark: #6a6a72;
+            --text-primary: #f0f0f4;
+            --text-muted: #888890;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Textured background like the logo */
+        .bg-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(0, 212, 229, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.4) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-texture::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header with Logo */
+        header {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .logo-wrapper {
+            margin-bottom: 8px;
+        }
+
+        .logo-img {
+            max-width: 320px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 30px var(--accent-cyan-glow));
+            animation: logoPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 212, 229, 0.3)); }
+            50% { filter: drop-shadow(0 0 40px rgba(0, 212, 229, 0.5)); }
+        }
+
+        .tagline {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--metallic-mid);
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+
+        /* Main sections */
+        main {
+            padding: 40px 0 100px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Cards - Metallic Style */
+        .card {
+            background: linear-gradient(145deg, var(--bg-card) 0%, #1e1e24 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--metallic-mid) 20%, 
+                var(--metallic-light) 50%, 
+                var(--metallic-mid) 80%, 
+                transparent);
+            opacity: 0.3;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--accent-cyan);
+            transition: width 0.4s ease;
+            box-shadow: 0 0 20px var(--accent-cyan-glow);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 212, 229, 0.2);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 60px rgba(0, 212, 229, 0.1);
+        }
+
+        .card:hover::after {
+            width: 60%;
+        }
+
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #2a2a32, #1e1e24);
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            position: relative;
+        }
+
+        .card-icon::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 12px;
+            background: linear-gradient(145deg, var(--metallic-mid), transparent);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .card-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--accent-cyan);
+            filter: drop-shadow(0 0 8px var(--accent-cyan-glow));
+        }
+
+        .card h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--metallic-light), var(--metallic-mid));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
+        /* Buttons - Metallic with Cyan Glow */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn--primary {
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-cyan-dim) 100%);
+            color: var(--bg-dark);
+            box-shadow: 0 4px 20px rgba(0, 212, 229, 0.3);
+        }
+
+        .btn--primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 212, 229, 0.5);
+        }
+
+        .btn--secondary {
+            background: linear-gradient(145deg, #3a3a42, #2a2a32);
+            color: var(--metallic-light);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .btn--secondary:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 20px rgba(0, 212, 229, 0.2);
+        }
+
+        .btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* BotOrNot Feature Section */
+        .features {
+            margin-top: 60px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            background: linear-gradient(135deg, var(--metallic-light), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feature {
+            background: linear-gradient(145deg, var(--bg-card) 0%, #1e1e24 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 28px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 24px;
+            right: 24px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--metallic-dark), transparent);
+        }
+
+        .feature:hover {
+            border-color: rgba(0, 212, 229, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .feature-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-cyan-dim));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.6;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .feature h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--metallic-light);
+            letter-spacing: 0.02em;
+        }
+
+        .feature p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        footer p {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            color: var(--metallic-dark);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card, .feature {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+
+        .feature:nth-child(1) { animation-delay: 0.3s; }
+        .feature:nth-child(2) { animation-delay: 0.4s; }
+        .feature:nth-child(3) { animation-delay: 0.5s; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header {
+                padding: 40px 0 30px;
+            }
+            
+            .logo-img {
+                max-width: 260px;
+            }
+            
+            .card {
+                padding: 28px;
+            }
+            
+            .tagline {
+                font-size: 0.7rem;
+                letter-spacing: 0.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-texture"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo-wrapper">
+                <img src="logo.jpg" alt="ModPackDad Logo" class="logo-img">
+            </div>
+            <p class="tagline">Streamer • Creator • Developer</p>
+        </header>
+
+        <main>
+            <div class="grid">
+                <!-- Twitch Card -->
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"/>
+                        </svg>
+                    </div>
+                    <h2>Watch Live</h2>
+                    <p>Catch me streaming Fortnite and other games. Come hang out, chat, and watch the chaos unfold live on Twitch.</p>
+                    <a href="https://twitch.tv/ModPackDad" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"/></svg>
+                        Follow on Twitch
+                    </a>
+                </div>
+
+                <!-- BotOrNot Card -->
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="16" rx="2"/>
+                            <path d="M7 8h.01M7 12h.01M7 16h.01M11 8h6M11 12h6M11 16h6"/>
+                        </svg>
+                    </div>
+                    <h2>BotOrNot</h2>
+                    <p>A Windows application that analyzes your Fortnite replay files to detect bot lobbies. Find out if you're dominating real players or just farming AI.</p>
+                    <a href="https://github.com/ModPackDad/BotOrNot" target="_blank" rel="noopener noreferrer" class="btn btn--secondary">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- How BotOrNot Works -->
+            <section class="features">
+                <div class="section-header">
+                    <h3>How BotOrNot Works</h3>
+                    <p>Three simple steps to analyze your matches</p>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature">
+                        <div class="feature-num">01</div>
+                        <h4>Load Your Replay</h4>
+                        <p>Point BotOrNot at your Fortnite replay files. The app reads the match data that Fortnite stores locally on your PC.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-num">02</div>
+                        <h4>Analyze Players</h4>
+                        <p>The app examines player names, behaviors, and match patterns to identify which opponents were AI bots vs real human players.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-num">03</div>
+                        <h4>Get Results</h4>
+                        <p>See a breakdown of your lobby composition. Know exactly how many bots were in your match and validate your skills.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2024 ModPackDad — See You in the Lobby</p>
+        </footer>
+    </div>
+</body>
+</html>
