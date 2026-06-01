@@ -16,6 +16,9 @@
             --accent-cyan: #00d4e5;
             --accent-cyan-dim: #00a8b5;
             --accent-cyan-glow: rgba(0, 212, 229, 0.4);
+            --accent-purple: #a855f7;
+            --accent-purple-dim: #7e3ff2;
+            --accent-purple-glow: rgba(168, 85, 247, 0.4);
             --metallic-light: #e8e8ec;
             --metallic-mid: #a0a0a8;
             --metallic-dark: #6a6a72;
@@ -265,6 +268,41 @@
             box-shadow: 0 8px 30px rgba(0, 212, 229, 0.5);
         }
 
+        /* DJ channel - purple accent variant */
+        .card--dj .card-icon svg {
+            stroke: var(--accent-purple);
+            filter: drop-shadow(0 0 8px var(--accent-purple-glow));
+        }
+
+        .card--dj::after {
+            background: var(--accent-purple);
+            box-shadow: 0 0 20px var(--accent-purple-glow);
+        }
+
+        .card--dj:hover {
+            border-color: rgba(168, 85, 247, 0.25);
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 60px rgba(168, 85, 247, 0.12);
+        }
+
+        .btn--dj {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-purple-dim) 100%);
+            color: var(--bg-dark);
+            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);
+        }
+
+        .btn--dj:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(168, 85, 247, 0.5);
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
         .btn--secondary {
             background: linear-gradient(145deg, #3a3a42, #2a2a32);
             color: var(--metallic-light);
@@ -406,6 +444,11 @@
         .feature:nth-child(2) { animation-delay: 0.4s; }
         .feature:nth-child(3) { animation-delay: 0.5s; }
 
+        /* Spacing between stacked sections */
+        .section + .section {
+            margin-top: 64px;
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
             header {
@@ -435,27 +478,64 @@
             <div class="logo-wrapper">
                 <img src="logo.jpg" alt="ModPackDad Logo" class="logo-img">
             </div>
-            <p class="tagline">Coder • Dad • Streamer</p>
+            <p class="tagline">Coder • Dad • Streamer • Selector</p>
         </header>
 
         <main>
-            <div class="grid">
-                <!-- Twitch Card -->
-                <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"/>
-                        </svg>
-                    </div>
-                    <h2>Watch Live</h2>
-                    <p>Catch me streaming Fortnite and other games. Come hang out, chat, and watch the chaos unfold live on Twitch.</p>
-                    <a href="https://twitch.tv/ModPackDad" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"/></svg>
-                        Follow on Twitch
-                    </a>
+            <!-- Watch Live: two channels -->
+            <section class="section">
+                <div class="section-header">
+                    <h3>Watch Live</h3>
                 </div>
+                <div class="grid">
+                    <!-- Gaming Card -->
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"/>
+                            </svg>
+                        </div>
+                        <h2>Gaming</h2>
+                        <p>Catch me streaming Fortnite and other games. Come hang out, chat, and watch the chaos unfold live on Twitch.</p>
+                        <a href="https://twitch.tv/ModPackDad" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"/></svg>
+                            Follow on Twitch
+                        </a>
+                    </div>
 
-                <!-- BotOrNot Card -->
+                    <!-- DJ Card -->
+                    <div class="card card--dj">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 14v-2a9 9 0 0 1 18 0v2"/>
+                                <path d="M21 16a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2z"/>
+                                <path d="M3 16a2 2 0 0 0 2 2h1v-6H5a2 2 0 0 0-2 2z"/>
+                            </svg>
+                        </div>
+                        <h2>DJ Sets</h2>
+                        <p>I play sets inspired by the mix tapes of my youth. Come listen and chat.</p>
+                        <div class="btn-row">
+                            <a href="https://twitch.tv/selector_mpd" target="_blank" rel="noopener noreferrer" class="btn btn--dj">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"/></svg>
+                                Follow on Twitch
+                            </a>
+                            <a href="https://www.mixcloud.com/Selector_MPD/" target="_blank" rel="noopener noreferrer" class="btn btn--secondary">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.5 13.5c-.32 0-.62.06-.91.15a5.5 5.5 0 0 0-10.36-1.9A4.5 4.5 0 1 0 6 20.5h13.5a3.5 3.5 0 0 0 0-7z"/></svg>
+                                Mixcloud
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects -->
+            <section class="section">
+                <div class="section-header">
+                    <h3>Projects</h3>
+                    <p>Tools I build for streamers and gamers</p>
+                </div>
+                <div class="grid">
+                    <!-- BotOrNot Card -->
                 <div class="card">
                     <div class="card-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -488,7 +568,8 @@
                         View on GitHub
                     </a>
                 </div>
-            </div>
+                </div>
+            </section>
         </main>
 
         <footer>
