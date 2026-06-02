@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afro-Cuban Fire | Selector MPD Set Guide</title>
+    <meta name="description" content="Selector MPD set guide — Afro-Cuban Fire: descargas, rumba and Latin-jazz hidden gems, track by track.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1a1a1f;
+            --bg-card: #222228;
+            --accent-cyan: #00d4e5;
+            --accent-purple: #a855f7;
+            --accent-purple-dim: #7e3ff2;
+            --accent-purple-glow: rgba(168, 85, 247, 0.4);
+            --metallic-light: #e8e8ec;
+            --metallic-mid: #a0a0a8;
+            --metallic-dark: #6a6a72;
+            --text-primary: #f0f0f4;
+            --text-muted: #888890;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        .bg-texture {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(168, 85, 247, 0.09) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.4) 0%, transparent 50%);
+            pointer-events: none; z-index: 0;
+        }
+        .bg-texture::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+        }
+        .container { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+        header { padding: 56px 0 8px; text-align: center; }
+        .logo-img {
+            max-width: 220px; width: 100%; height: auto;
+            filter: drop-shadow(0 0 26px var(--accent-purple-glow));
+        }
+        .tagline {
+            font-family: 'Orbitron', sans-serif; font-size: 0.72rem; font-weight: 500;
+            color: var(--metallic-mid); letter-spacing: 0.4em; text-transform: uppercase; margin-top: 16px;
+        }
+        .backlink {
+            display: inline-block; margin-top: 22px; font-family: 'Orbitron', sans-serif;
+            font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--metallic-mid); text-decoration: none;
+        }
+        .backlink:hover { color: var(--accent-purple); }
+
+        .set-hero { text-align: center; padding: 28px 0 8px; }
+        .set-hero h1 {
+            font-family: 'Orbitron', sans-serif; font-size: 2.6rem; font-weight: 900; letter-spacing: 0.04em;
+            background: linear-gradient(135deg, var(--metallic-light), var(--accent-purple));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            line-height: 1.1;
+        }
+        .set-meta {
+            margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+        }
+        .pill {
+            font-family: 'Orbitron', sans-serif; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--metallic-light); background: linear-gradient(145deg, #2a2a32, #1e1e24);
+            border: 1px solid var(--border-subtle); border-radius: 999px; padding: 7px 14px;
+        }
+        .intro {
+            margin: 30px auto 10px; max-width: 720px; text-align: center; color: var(--text-muted);
+            font-size: 1.05rem; font-weight: 500; line-height: 1.75;
+        }
+
+        main { padding: 24px 0 90px; }
+        .section-label {
+            font-family: 'Orbitron', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--accent-purple); margin: 44px 0 6px;
+            border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px;
+        }
+        .section-label span { color: var(--metallic-dark); font-size: 0.7rem; margin-left: 8px; }
+
+        .track {
+            display: grid; grid-template-columns: 56px 1fr; gap: 18px;
+            padding: 26px 0; border-bottom: 1px solid var(--border-subtle);
+        }
+        .track-num {
+            font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 800; line-height: 1;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dim));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            opacity: 0.85;
+        }
+        .track h3 {
+            font-family: 'Orbitron', sans-serif; font-size: 1.12rem; font-weight: 700; letter-spacing: 0.01em;
+            color: var(--metallic-light); margin-bottom: 2px;
+        }
+        .track .song { color: var(--accent-cyan); font-weight: 600; }
+        .track .album {
+            font-size: 0.82rem; color: var(--metallic-mid); font-weight: 600; letter-spacing: 0.03em;
+            text-transform: uppercase; margin-bottom: 10px;
+        }
+        .track p { color: var(--text-muted); font-size: 1rem; font-weight: 500; line-height: 1.72; }
+        .track .links { margin-top: 12px; display: flex; gap: 16px; flex-wrap: wrap; }
+        .track .links a {
+            font-family: 'Orbitron', sans-serif; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+            text-decoration: none; color: var(--metallic-mid);
+        }
+        .track .links a:hover { color: var(--accent-purple); }
+
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border-subtle); }
+        footer p {
+            font-family: 'Orbitron', sans-serif; font-size: 0.62rem; color: var(--metallic-dark);
+            letter-spacing: 0.2em; text-transform: uppercase;
+        }
+
+        @media (max-width: 600px) {
+            .set-hero h1 { font-size: 1.9rem; }
+            .track { grid-template-columns: 40px 1fr; gap: 12px; }
+            .track-num { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-texture"></div>
+    <div class="container">
+        <header>
+            <img src="../logo.jpg" alt="ModPackDad Logo" class="logo-img">
+            <p class="tagline">Selector MPD • Set Guide</p>
+            <a href="index.html" class="backlink">← All Setlists</a>
+        </header>
+
+        <div class="set-hero">
+            <h1>Afro-Cuban Fire</h1>
+            <div class="set-meta">
+                <span class="pill">Afro-Cuban</span>
+                <span class="pill">~90 min + backup</span>
+                <span class="pill">High &amp; Steady</span>
+                <span class="pill">Descarga · Rumba · Latin Jazz</span>
+            </div>
+            <p class="intro">
+                A high, steady, percussion-first run through the Afro-Cuban tradition — Nuyorican
+                descargas, sacred rumba and batá roots, Havana fire and West-Coast Latin jazz.
+                Hidden gems up front, big names earning their place. The thread throughout: clave,
+                congas, and the spirit that travels with them.
+            </p>
+        </div>
+
+        <main>
+            <div class="section-label">Main Set <span>~90 min</span></div>
+
+            <div class="track">
+                <div class="track-num">01</div>
+                <div>
+                    <h3>Grupo Folklórico y Experimental Nuevayorquino — <span class="song">Cinco en uno callejero</span></h3>
+                    <div class="album">Lo Dice Todo · 1976</div>
+                    <p>The Nuyorican avant-garde's manifesto: a loose collective convened by percussionists Andy and Jerry González and producer René López to strip salsa back to its Afro-Cuban and Afro-Puerto Rican roots, right as Fania was polishing it for the dance floor. The title means "five in one street-style" — five rhythms (bomba, mozambique, batucada, calypso, rumba) welded into one suite, with Heny Álvarez leading the vocals over a who's-who lineup including Chocolate Armenteros and Manny Oquendo. One of the most fiercely authentic Latin records ever cut in New York.</p>
+                    <div class="links"><a href="https://www.youtube.com/results?search_query=Grupo+Folklorico+Cinco+en+uno+callejero" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/us-en/search?q=Grupo%20Folklorico%20Lo%20Dice%20Todo" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">02</div>
+                <div>
+                    <h3>Ray Barretto — <span class="song">Cocinando</span></h3>
+                    <div class="album">Que Viva La Música · 1972</div>
+                    <p>Barretto, the Brooklyn-born "King of the Hard Hands," was the conguero who'd already played countless jazz dates before becoming one of Fania's defining bandleaders. "Cocinando" ("Cooking") is a hypnotic, slow-burn descarga that lets the rhythm section stretch out — famously the cut that opened Leon Gast's 1972 documentary <em>Our Latin Thing</em>, the film that introduced the world to the New York salsa explosion. Adalberto Santiago on lead vocals, Orestes Vilató on timbales: untouchable groove.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=dj0W9LtI-jE" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/us-en/search?q=Ray%20Barretto%20Que%20Viva%20La%20Musica" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">03</div>
+                <div>
+                    <h3>Típica 73 — <span class="song">La Candela</span></h3>
+                    <div class="album">La Candela · 1975</div>
+                    <p>Típica 73 began as a breakaway crew of Barretto sidemen and became one of the most adventurous bands of the era — eventually traveling to Havana to record with Cuban musicians at a time when that was nearly unthinkable. <em>La Candela</em> is widely cited as their finest hour: Adalberto Santiago up front, Sonny Bravo on piano, Nelson González on tres, Orestes Vilató on timbales. Their calling card was a modernized take on the Cuban <em>típica</em> conjunto sound — hot, sophisticated, rhythmically fearless.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=g7BXnk4d7is" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/us-en/interpreter/tipica-73/770483" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">04</div>
+                <div>
+                    <h3>Manny Oquendo's Conjunto Libre — <span class="song">Que Humanidad</span></h3>
+                    <div class="album">Ritmo, Sonido y Estilo · 1983</div>
+                    <p>After leaving Eddie Palmieri's La Perfecta, timbalero/bongocero Manny Oquendo co-founded Libre with bassist Andy González to keep the trombone-and-percussion tradition uncompromised — the band became a "finishing school" for Latin jazz musicians. The title nods to their core values, and the music is a clinic in <em>the crescendo</em>: a battery of trombones that can slide from a tender son montuno into a roaring mambo and end in a full descarga. Relentless collective heat.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=if8R3Mu0ffU" target="_blank" rel="noopener">▶ YouTube</a><a href="https://vampisoul.bandcamp.com/track/qu-humanidad-manny-oquendo-y-libre" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">05</div>
+                <div>
+                    <h3>Jerry González — <span class="song">Agüeybaná Zemí</span></h3>
+                    <div class="album">Ya Yo Me Curé · 1980</div>
+                    <p>Trumpeter/conguero Jerry González's debut as a leader, recorded in Willow, NY in 1979 with Kip Hanrahan — the seed of what became the Fort Apache Band, though the group wasn't yet named. The opener was written by vocalist Frankie Rodríguez and named for the Taíno cacique who first received Ponce de León; its call-and-response vocals plant the whole record in Afro-Caribbean identity. (The "Fort Apache" name was later adopted as a defiant rebuke to the film's racist depiction of the Bronx.) A foundational document of the Bronx Latin-jazz vanguard.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=PgEdL28HO24" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/us-en/search?q=Jerry%20Gonzalez%20Ya%20Yo%20Me%20Cure" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">06</div>
+                <div>
+                    <h3>Eddie Palmieri — <span class="song">Vámonos Pa'l Monte</span></h3>
+                    <div class="album">Vámonos Pa'l Monte · 1971</div>
+                    <p>A cornerstone of both the salsa and Latin-jazz canons, from the pianist whose percussive, McCoy Tyner–influenced left hand rewired what the instrument could do in this music. The title track is built around an electrifying keyboard dialogue between Eddie on electric piano and his older brother Charlie Palmieri on organ — two of the great Nuyorican pianists trading lightning, with Ronnie Cuber and Chocolate Armenteros in the cast. "Let's head for the hills" carries a coded, roots-seeking resonance that runs deep through Afro-Cuban tradition.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=Rn85kvb4bTk" target="_blank" rel="noopener">▶ YouTube</a><a href="https://eddiepalmieri.bandcamp.com/track/v-monos-pa-l-monte" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">07</div>
+                <div>
+                    <h3>Cachao — <span class="song">Descarga Cubana</span></h3>
+                    <div class="album">Cuban Jam Session "Descargas" · 1957</div>
+                    <p>Israel "Cachao" López, with his brother Orestes, helped invent the mambo in the late-1930s charanga Arcaño y sus Maravillas — and then, with these sessions, effectively codified the <em>descarga</em> (the Cuban jam) as a recorded art form. The album was famously cut at Panart's Havana studio in a single five-hour session starting around 4 a.m., after the musicians finished their nightclub gigs. Tight, miniature improvisations rather than sprawling jams — a genuine milestone, later inducted into the U.S. National Recording Registry.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=7hdCxr7I41Q" target="_blank" rel="noopener">▶ YouTube</a><a href="https://grossorecords.bandcamp.com/track/descarga-cubana" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">08</div>
+                <div>
+                    <h3>Mongo Santamaría — <span class="song">Mi Guaguancó</span></h3>
+                    <div class="album">Yambú · 1958</div>
+                    <p>After leaving Cuba and anchoring Cal Tjader's group, conguero Mongo Santamaría made <em>Yambú</em> as a deliberate deep-dive into authentic Afro-Cuban folklore — yambú, columbia and guaguancó, the three pillars of rumba. "Mi Guaguancó" sits squarely in that tradition: layered hand drums, clave and call-and-response chant rather than jazz arrangement, with an extraordinary cast that includes Willie Bobo and Al McKibbon. The track was dropped from some later CD reissues, which makes the original LP the one to seek out.</p>
+                    <div class="links"><a href="https://www.youtube.com/results?search_query=Mongo+Santamaria+Mi+Guaguanco+Yambu" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/us-en/search?q=Mongo%20Santamaria%20Yambu" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">09</div>
+                <div>
+                    <h3>Irakere — <span class="song">Bacalao con Pan</span></h3>
+                    <div class="album">Teatro Amadeo Roldán Recital · 1974</div>
+                    <p>Led by pianist Chucho Valdés (son of Bebo), Irakere detonated Cuban music in the 1970s by fusing jazz, rock, funk and the sacred batá-drum tradition — the name itself is a Yoruba-derived word evoking the forest. "Bacalao con Pan" ("codfish and bread") is the dancefloor bomb: wah-wah guitar, ferocious horns and a riot of percussion — early Cuban jazz-funk at full tilt. The personnel pool included future giants Paquito D'Rivera and Arturo Sandoval; a holy grail for crate-diggers.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=uP5FCqgXSVs" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/us-en/album/bacalao-con-pan-irakere/0617465652059" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">10</div>
+                <div>
+                    <h3>Patato y Totico — <span class="song">Ya Yo E</span></h3>
+                    <div class="album">Patato &amp; Totico · 1967</div>
+                    <p>A rare, jewel-like meeting of masters: conguero Carlos "Patato" Valdés (a key figure in the tunable conga drum) and rumbero/vocalist Eugenio "Totico" Arango, joined by Cachao on bass and the blind tres genius Arsenio Rodríguez — a living bridge to the deepest roots of Cuban son and rumba. The album is essentially pure guaguancó: voices, hand drums, clave and tres, with almost no concession to commercial salsa. The sound of a Havana tenement courtyard transplanted to New York.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=Vw3kCcW7NK4" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/us-en/search?q=Patato%20y%20Totico" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">11</div>
+                <div>
+                    <h3>Chocolate Armenteros — <span class="song">Chocolate Aquí</span></h3>
+                    <div class="album">Chocolate Aquí · 1974</div>
+                    <p>Alfredo "Chocolate" Armenteros was the trumpeter whose burnished, vibrato-rich tone became the definitive <em>trompeta cubana</em> sound — a veteran of Arsenio Rodríguez's conjunto who graced hundreds of New York salsa dates. <em>Chocolate Aquí</em> marked his belated debut as leader of his own conjunto, produced by Louie Ramírez, with Libre's Manny Oquendo and Andy González among the guests. His playing here is the template every salsa trumpeter since has chased.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=kAvFOHqdVU4" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/us-en/search?q=Chocolate%20Armenteros%20Chocolate%20Aqui" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">12</div>
+                <div>
+                    <h3>Pello el Afrokán — <span class="song">María Caracoles</span></h3>
+                    <div class="album">Single · ~1964 · ritmo Mozambique</div>
+                    <p>Pedro Izquierdo, "Pello el Afrokán," created one of post-revolutionary Cuba's most explosive rhythms: the <em>mozambique</em> (1963), a carnival-derived stew blending Abakuá, Yoruba, Congo and Carabalí elements (and, despite the name, nothing to do with the African country). "María Caracoles" is his signature anthem — a thundering wall of drums and chant. A measure of its reach: Santana covered it on their 1977 album <em>Festival</em>. Pure street-carnival energy, massed percussion front and center.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=IT6MltKrfk8" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/us-en/album/maria-caracoles-pello-el-afrokan/f5zcgrw2xjdbb" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">13</div>
+                <div>
+                    <h3>Francisco Aguabella — <span class="song">Hitting Hard</span></h3>
+                    <div class="album">Hitting Hard · 1977 (CuBop reissue 1993)</div>
+                    <p>Aguabella was a Matanzas-born master drummer and an <em>olú batá</em> — an initiated keeper of the sacred batá drums of Santería — who carried that lineage from Cuba to American stages with Tito Puente, Eddie Palmieri and Dizzy Gillespie. <em>Hitting Hard</em> is the wilder, secular flip side of his art: a street-style rare-groove fusion of salsa, Latin jazz and funk, later rescued by San Francisco's CuBop label, with the great Cuban conguero Armando Peraza guesting. Sacred tradition meets dancefloor funk.</p>
+                    <div class="links"><a href="https://www.youtube.com/results?search_query=Francisco+Aguabella+Hitting+Hard" target="_blank" rel="noopener">▶ YouTube</a><a href="https://cubop.bandcamp.com/album/hitting-hard" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">14</div>
+                <div>
+                    <h3>Cándido — <span class="song">Jingo</span></h3>
+                    <div class="album">Dancin' &amp; Prancin' · 1979</div>
+                    <p>Cándido Camero was a true pioneer — among the first to play multiple congas at once and to fully integrate the instrument into American jazz, across a career stretching from 1940s Havana into the 21st century. By 1979 the elder statesman went disco: "Jingo" is a full-throttle Latin-disco firestorm descended from Nigerian drummer Babatunde Olatunji's "Jingo-Lo-Ba" (1959), by way of Santana. A massive club anthem and a perennial floor-filler.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=1o66ldtHZLs" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.beatport.com/search?q=Candido%20Jingo" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">15</div>
+                <div>
+                    <h3>Sabu Martínez — <span class="song">Asabache</span></h3>
+                    <div class="album">Palo Congo · 1957 · Blue Note</div>
+                    <p>A startling thing to find in the Blue Note catalog: an unapologetically Afro-Cuban ritual record. Conguero Sabú Martínez cut this debut on April 27, 1957, with the blind son master Arsenio Rodríguez and his brothers in the octet. "Asabache" is essentially one long, building conga tirade — drums and chant rooted in Congo-derived <em>palo</em> tradition. A fragment of Afro-Cuban ritual smuggled onto a famous jazz label; it later earned a place in <em>1001 Albums You Must Hear Before You Die</em>. A fitting close to the main set.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=FA6ugXe__iQ" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/us-en/album/palo-congo-sabu/0724352266555" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="section-label">Backup &amp; Extensions <span>+30–45 min</span></div>
+
+            <div class="track">
+                <div class="track-num">16</div>
+                <div>
+                    <h3>Manny Oquendo's Libre — <span class="song">Mejor Que Nunca</span></h3>
+                    <div class="album">Mejor Que Nunca (Better Than Ever) · 1994</div>
+                    <p>Two decades in, Libre proved the title literally — often called their finest latter-day record, released on Milestone and directed by Andy González around Manny Oquendo's distinctive timbal/bongo attack. The trademark four-trombone front line still carries the music from son montuno and guaracha into ferocious mambo and descarga. The sound of a band that spent twenty years refining one idea — collective swing built to a boil — and nailing it.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=ChwELaOCKNk" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/us-en/search?q=Manny%20Oquendo%20Libre%20Mejor%20Que%20Nunca" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">17</div>
+                <div>
+                    <h3>Joe Cuba Sextet — <span class="song">El Pito (I'll Never Go Back to Georgia)</span></h3>
+                    <div class="album">Single · 1965</div>
+                    <p>The quintessential Latin boogaloo crossover, co-written by Joe Cuba and timbalero/vocalist Jimmy Sabater, with Cheo Feliciano and Sabater singing. The irony: the English hook "I'll never go back to Georgia" was lifted straight from the intro chant of Dizzy Gillespie's "Manteca" — and none of the band had ever been to Georgia; Sabater just loved how the cadence locked into clave. The whistle became the gimmick. A rare record that united Latin and Black audiences at exactly the right moment.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=0galLsi5Njc" target="_blank" rel="noopener">▶ YouTube</a><a href="https://joecuba.bandcamp.com/track/el-pito-ill-never-go-back-to-georgia" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">18</div>
+                <div>
+                    <h3>Pucho &amp; His Latin Soul Brothers — <span class="song">Heat!</span></h3>
+                    <div class="album">Heat! · 1968</div>
+                    <p>Henry "Pucho" Brown led one of the great boogaloo/soul-jazz outfits, and <em>Heat!</em> is a prime slab of greasy Latin soul-jazz — Pucho on timbales, Willie Bivens' shimmering vibes, the Pazant brothers' horns and Neal Creque's organ arrangements. Originals and danced-up covers alike, exactly the kind of crate-dig that found a second life with later acid-jazz and hip-hop crowds. Funky, infectious, built for the floor.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=jVHhHmPDnZU" target="_blank" rel="noopener">▶ YouTube</a><a href="https://jazzdispensary.bandcamp.com/album/heat" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">19</div>
+                <div>
+                    <h3>Tata Güines — <span class="song">Pasaporte</span></h3>
+                    <div class="album">Pasaporte · 1994</div>
+                    <p>Tata Güines (1930–2008) was revered in Cuba simply as one of the greatest congueros who ever lived — a master of touch and tone central to the modern Afro-Cuban descarga. <em>Pasaporte</em> pairs the elder master with the young phenom Miguel "Angá" Díaz (later of Buena Vista and Irakere fame), a generational summit steeped in descarga and rumba, with guest spots from folkloric vocalist Merceditas Valdés. Two virtuosos, decades apart, in conversation through the drum.</p>
+                    <div class="links"><a href="https://www.youtube.com/results?search_query=Tata+Guines+Pasaporte" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/us-en/album/pasaporte-tata-guines-y-anga/qpdqqh1g5nchc" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">20</div>
+                <div>
+                    <h3>Cal Tjader — <span class="song">Cuban Fantasy</span></h3>
+                    <div class="album">Cuban Fantasy · live, 1977</div>
+                    <p>Vibraphonist Cal Tjader was the rare non-Latino who became a genuinely central figure in Latin jazz, building a West Coast sound that carried Afro-Cuban rhythm to a wide American audience. "Cuban Fantasy" is a Ray Bryant composition Tjader revisited over decades; the best-known album bearing the title is a 1977 Great American Music Hall live date with Clare Fischer and Poncho Sanchez. A breezy, cross-rhythmic palate-cleanser deep in the night.</p>
+                    <div class="links"><a href="https://www.youtube.com/results?search_query=Cal+Tjader+Cuban+Fantasy" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/us-en/search?q=Cal%20Tjader%20Cuban%20Fantasy" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">21</div>
+                <div>
+                    <h3>Willie Bobo — <span class="song">Spanish Grease</span></h3>
+                    <div class="album">Spanish Grease · 1965</div>
+                    <p>Timbalero/drummer Willie Bobo (born William Correa) came up under Mongo and Tito Puente before launching his own crossover sound. The title track — the only original on the album, co-written with Melvin Lastie — is the irresistible mid-tempo Latin-soul groove that became his calling card, all relaxed swagger and shaker-and-vibes cool. Recorded at Rudy Van Gelder's studio, it's a perfect distillation of the "Latin grease" aesthetic: not flashy, just deeply in the pocket.</p>
+                    <div class="links"><a href="https://www.youtube.com/results?search_query=Willie+Bobo+Spanish+Grease" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/us-en/album/spanish-grease-willie-bobo/vql4epummaeuc" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">22</div>
+                <div>
+                    <h3>Los Papines — <span class="song">Los Barrios (Rumba)</span></h3>
+                    <div class="album">Cuban rumba</div>
+                    <p>Los Papines are a Havana rumba institution, built from the Abreu family of Marianao — a clan of percussionists who professionalized in the early 1960s and took the name in 1963. Alongside Los Muñequitos de Matanzas, they carried pure, unaccompanied Cuban rumba — guaguancó, columbia, yambú — to stages across the world. Their art is voices, claves, and the conversational interplay of quinto, tres dos and tumbador: rumba in its most distilled, electrifying form.</p>
+                    <div class="links"><a href="https://www.youtube.com/watch?v=ljnA3Cg3JcY" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/us-en/search?q=Los%20Papines" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+
+            <div class="track">
+                <div class="track-num">23</div>
+                <div>
+                    <h3>Mongo Santamaría — <span class="song">Afro Blue</span></h3>
+                    <div class="album">Mongo · 1959</div>
+                    <p>The original — Mongo's composition "Afro Blue," recorded for his own debut leader album in May 1959, built on a hypnotic 3-against-2 cross-rhythm. Often called the first jazz standard founded on a genuine African cross-rhythm, it went on to be immortalized by John Coltrane and countless others (Oscar Brown Jr. added the famous lyric the same year). A cornerstone of the entire Afro-Cuban-jazz idiom — and a perfect, circling note to end on.</p>
+                    <div class="links"><a href="https://www.youtube.com/results?search_query=Mongo+Santamaria+Afro+Blue+1959" target="_blank" rel="noopener">▶ YouTube</a><a href="https://www.qobuz.com/ie-en/album/mongo-mongo-santamaria/5056005076347" target="_blank" rel="noopener">◆ Buy (lossless)</a></div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Selector MPD · Afro-Cuban Fire · modpackdad.gg</p>
+        </footer>
+    </div>
+</body>
+</html>
