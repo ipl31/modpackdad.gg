@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funk Set | Selector MPD Set Guide</title>
+    <meta name="description" content="Selector MPD set — Funk Set: classic funk, rare groove and breaks. Tracklist.">
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1a1a1f;
+            --bg-card: #222228;
+            --accent-cyan: #00d4e5;
+            --accent-purple: #a855f7;
+            --accent-purple-dim: #7e3ff2;
+            --accent-purple-glow: rgba(168, 85, 247, 0.4);
+            --metallic-light: #e8e8ec;
+            --metallic-mid: #a0a0a8;
+            --metallic-dark: #6a6a72;
+            --text-primary: #f0f0f4;
+            --text-muted: #888890;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Rajdhani', sans-serif; background: var(--bg-dark); color: var(--text-primary);
+            min-height: 100vh; overflow-x: hidden; line-height: 1.6;
+        }
+        .bg-texture {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(168, 85, 247, 0.09) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.4) 0%, transparent 50%);
+            pointer-events: none; z-index: 0;
+        }
+        .bg-texture::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+        }
+        .container { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+        header { padding: 56px 0 8px; text-align: center; }
+        .logo-img { max-width: 220px; width: 100%; height: auto; filter: drop-shadow(0 0 26px var(--accent-purple-glow)); }
+        .tagline {
+            font-family: 'Orbitron', sans-serif; font-size: 0.72rem; font-weight: 500;
+            color: var(--metallic-mid); letter-spacing: 0.4em; text-transform: uppercase; margin-top: 16px;
+        }
+        .backlink {
+            display: inline-block; margin-top: 22px; font-family: 'Orbitron', sans-serif;
+            font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--metallic-mid); text-decoration: none;
+        }
+        .backlink:hover { color: var(--accent-purple); }
+
+        .set-hero { text-align: center; padding: 28px 0 8px; }
+        .set-hero h1 {
+            font-family: 'Orbitron', sans-serif; font-size: 2.6rem; font-weight: 900; letter-spacing: 0.04em;
+            background: linear-gradient(135deg, var(--metallic-light), var(--accent-purple));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            line-height: 1.1;
+        }
+        .set-meta { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .pill {
+            font-family: 'Orbitron', sans-serif; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--metallic-light); background: linear-gradient(145deg, #2a2a32, #1e1e24);
+            border: 1px solid var(--border-subtle); border-radius: 999px; padding: 7px 14px;
+        }
+
+        main { padding: 30px 0 90px; }
+        .section-label {
+            font-family: 'Orbitron', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--accent-purple); margin: 40px 0 4px;
+            border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px;
+        }
+        .section-label span { color: var(--metallic-dark); font-size: 0.7rem; margin-left: 8px; }
+
+        ol.tracklist { list-style: none; }
+        ol.tracklist li {
+            display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: baseline;
+            padding: 14px 0; border-bottom: 1px solid var(--border-subtle);
+        }
+        .t-num {
+            font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 800; line-height: 1;
+            color: var(--metallic-dark);
+        }
+        .t-artist { font-weight: 700; color: var(--metallic-light); font-size: 1.12rem; }
+        .t-song { color: var(--accent-cyan); font-weight: 600; font-size: 1.12rem; }
+
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border-subtle); }
+        footer p {
+            font-family: 'Orbitron', sans-serif; font-size: 0.62rem; color: var(--metallic-dark);
+            letter-spacing: 0.2em; text-transform: uppercase;
+        }
+        @media (max-width: 600px) {
+            .set-hero h1 { font-size: 1.9rem; }
+            ol.tracklist li { grid-template-columns: 32px 1fr; gap: 12px; }
+            .t-artist, .t-song { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-texture"></div>
+    <div class="container">
+        <header>
+            <img src="../logo.jpg" alt="ModPackDad Logo" class="logo-img">
+            <p class="tagline">Selector MPD • Set Guide</p>
+            <a href="index.html" class="backlink">← All Setlists</a>
+        </header>
+
+        <div class="set-hero">
+            <h1>Funk Set</h1>
+            <div class="set-meta">
+                <span class="pill">Funk</span>
+                <span class="pill">Rare Groove · Breaks</span>
+                <span class="pill">Energy: Ascending</span>
+            </div>
+        </div>
+
+        <main>
+            <div class="section-label">Tracklist <span>energy-ascending</span></div>
+            <ol class="tracklist">
+                <li><span class="t-num">01</span><span><span class="t-artist">Skull Snaps</span> — <span class="t-song">It's a New Day</span></span></li>
+                <li><span class="t-num">02</span><span><span class="t-artist">The Soul Searchers</span> — <span class="t-song">Ashley's Roachclip</span></span></li>
+                <li><span class="t-num">03</span><span><span class="t-artist">Lee Dorsey</span> — <span class="t-song">Everything I Do Gonh Be Funky</span></span></li>
+                <li><span class="t-num">04</span><span><span class="t-artist">Dyke &amp; the Blazers</span> — <span class="t-song">We Got More Soul</span></span></li>
+                <li><span class="t-num">05</span><span><span class="t-artist">Eddie Bo</span> — <span class="t-song">Hook and Sling</span></span></li>
+                <li><span class="t-num">06</span><span><span class="t-artist">Average White Band</span> — <span class="t-song">Pick Up the Pieces</span></span></li>
+                <li><span class="t-num">07</span><span><span class="t-artist">Funk Inc.</span> — <span class="t-song">Kool Is Back</span></span></li>
+                <li><span class="t-num">08</span><span><span class="t-artist">The J.B.'s</span> — <span class="t-song">Pass the Peas</span></span></li>
+                <li><span class="t-num">09</span><span><span class="t-artist">Marva Whitney</span> — <span class="t-song">It's My Thing</span></span></li>
+                <li><span class="t-num">10</span><span><span class="t-artist">Bobby Byrd</span> — <span class="t-song">I Know You Got Soul</span></span></li>
+                <li><span class="t-num">11</span><span><span class="t-artist">Reuben Wilson</span> — <span class="t-song">Got to Get Your Own</span></span></li>
+                <li><span class="t-num">12</span><span><span class="t-artist">Herbie Hancock</span> — <span class="t-song">Hang Up Your Hang-Ups</span></span></li>
+                <li><span class="t-num">13</span><span><span class="t-artist">Cymande</span> — <span class="t-song">Brothers on the Slide</span></span></li>
+                <li><span class="t-num">14</span><span><span class="t-artist">Kashmere Stage Band</span> — <span class="t-song">Zero Point</span></span></li>
+                <li><span class="t-num">15</span><span><span class="t-artist">The Mohawks</span> — <span class="t-song">The Champ</span></span></li>
+                <li><span class="t-num">16</span><span><span class="t-artist">Lafayette Afro Rock Band</span> — <span class="t-song">Hihache</span></span></li>
+                <li><span class="t-num">17</span><span><span class="t-artist">The Mighty Ryeders</span> — <span class="t-song">Evil Vibrations</span></span></li>
+                <li><span class="t-num">18</span><span><span class="t-artist">Idris Muhammad</span> — <span class="t-song">Power of Soul</span></span></li>
+                <li><span class="t-num">19</span><span><span class="t-artist">People's Choice</span> — <span class="t-song">Do It Any Way You Wanna</span></span></li>
+                <li><span class="t-num">20</span><span><span class="t-artist">The Jimmy Castor Bunch</span> — <span class="t-song">It's Just Begun</span></span></li>
+                <li><span class="t-num">21</span><span><span class="t-artist">Curtis Mayfield</span> — <span class="t-song">Move On Up</span></span></li>
+            </ol>
+        </main>
+
+        <footer>
+            <p>Selector MPD · Funk Set · modpackdad.gg</p>
+        </footer>
+    </div>
+</body>
+</html>
