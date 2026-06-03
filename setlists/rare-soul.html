@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rare Soul | Selector MPD Set Guide</title>
+    <meta name="description" content="Selector MPD set — Rare Soul: sweet soul, deep & tender, northern soul peak. Tracklist.">
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1a1a1f;
+            --bg-card: #222228;
+            --accent-cyan: #00d4e5;
+            --accent-purple: #a855f7;
+            --accent-purple-dim: #7e3ff2;
+            --accent-purple-glow: rgba(168, 85, 247, 0.4);
+            --metallic-light: #e8e8ec;
+            --metallic-mid: #a0a0a8;
+            --metallic-dark: #6a6a72;
+            --text-primary: #f0f0f4;
+            --text-muted: #888890;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Rajdhani', sans-serif; background: var(--bg-dark); color: var(--text-primary);
+            min-height: 100vh; overflow-x: hidden; line-height: 1.6;
+        }
+        .bg-texture {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(168, 85, 247, 0.09) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.4) 0%, transparent 50%);
+            pointer-events: none; z-index: 0;
+        }
+        .bg-texture::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+        }
+        .container { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+        header { padding: 56px 0 8px; text-align: center; }
+        .logo-img { max-width: 220px; width: 100%; height: auto; filter: drop-shadow(0 0 26px var(--accent-purple-glow)); }
+        .tagline {
+            font-family: 'Orbitron', sans-serif; font-size: 0.72rem; font-weight: 500;
+            color: var(--metallic-mid); letter-spacing: 0.4em; text-transform: uppercase; margin-top: 16px;
+        }
+        .backlink {
+            display: inline-block; margin-top: 22px; font-family: 'Orbitron', sans-serif;
+            font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--metallic-mid); text-decoration: none;
+        }
+        .backlink:hover { color: var(--accent-purple); }
+
+        .set-hero { text-align: center; padding: 28px 0 8px; }
+        .set-hero h1 {
+            font-family: 'Orbitron', sans-serif; font-size: 2.6rem; font-weight: 900; letter-spacing: 0.04em;
+            background: linear-gradient(135deg, var(--metallic-light), var(--accent-purple));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            line-height: 1.1;
+        }
+        .set-meta { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .pill {
+            font-family: 'Orbitron', sans-serif; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--metallic-light); background: linear-gradient(145deg, #2a2a32, #1e1e24);
+            border: 1px solid var(--border-subtle); border-radius: 999px; padding: 7px 14px;
+        }
+
+        main { padding: 30px 0 90px; }
+        .section-label {
+            font-family: 'Orbitron', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--accent-purple); margin: 40px 0 4px;
+            border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px;
+        }
+        .section-label span { color: var(--metallic-dark); font-size: 0.7rem; margin-left: 8px; }
+
+        .listen-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 22px; }
+        .listen-link, .listen-pending {
+            font-family: 'Orbitron', sans-serif; font-size: 0.72rem; font-weight: 600;
+            letter-spacing: 0.16em; text-transform: uppercase;
+            border-radius: 6px; padding: 12px 22px;
+            display: inline-block;
+        }
+        .listen-link {
+            color: var(--metallic-light);
+            background: linear-gradient(145deg, #2a2a32, #1e1e24);
+            border: 1px solid var(--border-subtle);
+            text-decoration: none; transition: all 0.25s ease;
+        }
+        .listen-link:hover {
+            border-color: var(--accent-purple); color: var(--accent-purple);
+            box-shadow: 0 0 24px var(--accent-purple-glow);
+        }
+        .listen-pending {
+            color: var(--metallic-dark);
+            background: transparent;
+            border: 1px dashed var(--border-subtle);
+            cursor: not-allowed;
+        }
+
+        ol.tracklist { list-style: none; }
+        ol.tracklist li {
+            display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: baseline;
+            padding: 14px 0; border-bottom: 1px solid var(--border-subtle);
+        }
+        .t-num {
+            font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 800; line-height: 1;
+            color: var(--metallic-dark);
+        }
+        .t-artist { font-weight: 700; color: var(--metallic-light); font-size: 1.12rem; }
+        .t-song { color: var(--accent-cyan); font-weight: 600; font-size: 1.12rem; }
+
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border-subtle); }
+        footer p {
+            font-family: 'Orbitron', sans-serif; font-size: 0.62rem; color: var(--metallic-dark);
+            letter-spacing: 0.2em; text-transform: uppercase;
+        }
+        @media (max-width: 600px) {
+            .set-hero h1 { font-size: 1.9rem; }
+            ol.tracklist li { grid-template-columns: 32px 1fr; gap: 12px; }
+            .t-artist, .t-song { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-texture"></div>
+    <div class="container">
+        <header>
+            <img src="../logo.jpg" alt="ModPackDad Logo" class="logo-img">
+            <p class="tagline">Selector MPD • Set Guide</p>
+            <a href="index.html" class="backlink">← All Setlists</a>
+        </header>
+
+        <div class="set-hero">
+            <h1>Rare Soul</h1>
+            <div class="set-meta">
+                <span class="pill">Rare Soul</span>
+                <span class="pill">Sweet · Deep · Northern</span>
+                <span class="pill">~73 min + 13 min bonus</span>
+            </div>
+        </div>
+
+        <main>
+            <div class="section-label">Listen <span>Sunday Morning Soul: 60s/70s Soul Gems</span></div>
+            <div class="listen-row">
+                <a class="listen-link" href="https://www.mixcloud.com/Selector_MPD/sunday-morning-soul-60s70s-soul-gems/" target="_blank" rel="noopener">Mixcloud →</a>
+                <span class="listen-pending">Audio Download — coming soon</span>
+                <span class="listen-pending">Video Download — coming soon</span>
+            </div>
+
+            <div class="section-label">Act 1 <span>Sweet Soul Sunrise</span></div>
+            <ol class="tracklist">
+                <li><span class="t-num">01</span><span><span class="t-artist">The Montclairs</span> — <span class="t-song">Hung up on Your Love</span></span></li>
+                <li><span class="t-num">02</span><span><span class="t-artist">Black Ivory</span> — <span class="t-song">Feel It</span></span></li>
+                <li><span class="t-num">03</span><span><span class="t-artist">The Natural Four</span> — <span class="t-song">Try Love Again</span></span></li>
+                <li><span class="t-num">04</span><span><span class="t-artist">Leroy Hutson</span> — <span class="t-song">So In Love With You</span></span></li>
+                <li><span class="t-num">05</span><span><span class="t-artist">Thee Marloes</span> — <span class="t-song">I'm Just A Girl</span></span></li>
+                <li><span class="t-num">06</span><span><span class="t-artist">Brenton Wood</span> — <span class="t-song">Gimme Little Sign</span></span></li>
+            </ol>
+
+            <div class="section-label">Act 2 <span>Deep &amp; Tender</span></div>
+            <ol class="tracklist">
+                <li><span class="t-num">07</span><span><span class="t-artist">Lou Ragland</span> — <span class="t-song">I Travel Alone</span></span></li>
+                <li><span class="t-num">08</span><span><span class="t-artist">Eddie Kendricks</span> — <span class="t-song">How's Your Life Baby</span></span></li>
+                <li><span class="t-num">09</span><span><span class="t-artist">Ronnie McNeir</span> — <span class="t-song">Extra Extra</span></span></li>
+                <li><span class="t-num">10</span><span><span class="t-artist">Darondo</span> — <span class="t-song">Didn't I</span></span></li>
+                <li><span class="t-num">11</span><span><span class="t-artist">Marion Black</span> — <span class="t-song">Who Knows</span></span></li>
+                <li><span class="t-num">12</span><span><span class="t-artist">Lou Pride</span> — <span class="t-song">I'm Com'un Home in the Morn'un</span></span></li>
+                <li><span class="t-num">13</span><span><span class="t-artist">Rose Batiste &amp; Mikki Farrow</span> — <span class="t-song">This Heart Is Lonely</span></span></li>
+            </ol>
+
+            <div class="section-label">Act 3 <span>Northern Soul Peak</span></div>
+            <ol class="tracklist">
+                <li><span class="t-num">14</span><span><span class="t-artist">Ronnie McNeir</span> — <span class="t-song">Girl You're Gonna Lose Your Groove</span></span></li>
+                <li><span class="t-num">15</span><span><span class="t-artist">Lou Ragland</span> — <span class="t-song">Good For The Gander</span></span></li>
+                <li><span class="t-num">16</span><span><span class="t-artist">Marion Black</span> — <span class="t-song">Go On Fool</span></span></li>
+                <li><span class="t-num">17</span><span><span class="t-artist">The Detroit Emeralds</span> — <span class="t-song">Feel The Need In Me</span></span></li>
+                <li><span class="t-num">18</span><span><span class="t-artist">Executive Suite</span> — <span class="t-song">When the Fuel Runs Out</span></span></li>
+                <li><span class="t-num">19</span><span><span class="t-artist">First Choice</span> — <span class="t-song">Armed and Extremely Dangerous</span></span></li>
+                <li><span class="t-num">20</span><span><span class="t-artist">Various Artists</span> — <span class="t-song">I Wanna Get Over</span></span></li>
+                <li><span class="t-num">21</span><span><span class="t-artist">Gloria Jones</span> — <span class="t-song">Tainted Love</span></span></li>
+            </ol>
+
+            <div class="section-label">Bonus <span>Extended Floor</span></div>
+            <ol class="tracklist">
+                <li><span class="t-num">B1</span><span><span class="t-artist">The Carstairs</span> — <span class="t-song">It Really Hurts Me Girl</span></span></li>
+                <li><span class="t-num">B2</span><span><span class="t-artist">The Tomangoes</span> — <span class="t-song">I Really Love You</span></span></li>
+                <li><span class="t-num">B3</span><span><span class="t-artist">Otis Leavill</span> — <span class="t-song">Love Uprising</span></span></li>
+                <li><span class="t-num">B4</span><span><span class="t-artist">Rose Batiste</span> — <span class="t-song">Hit &amp; Run</span></span></li>
+                <li><span class="t-num">B5</span><span><span class="t-artist">Unknown Artist</span> — <span class="t-song">Clean Up Woman</span></span></li>
+            </ol>
+        </main>
+
+        <footer>
+            <p>Selector MPD · Rare Soul · modpackdad.gg</p>
+        </footer>
+    </div>
+</body>
+</html>
