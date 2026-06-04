@@ -79,6 +79,30 @@
         }
         .section-label span { color: var(--metallic-dark); font-size: 0.7rem; margin-left: 8px; }
 
+        .listen-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 22px; }
+        .listen-link, .listen-pending {
+            font-family: 'Orbitron', sans-serif; font-size: 0.72rem; font-weight: 600;
+            letter-spacing: 0.16em; text-transform: uppercase;
+            border-radius: 6px; padding: 12px 22px;
+            display: inline-block;
+        }
+        .listen-link {
+            color: var(--metallic-light);
+            background: linear-gradient(145deg, #2a2a32, #1e1e24);
+            border: 1px solid var(--border-subtle);
+            text-decoration: none; transition: all 0.25s ease;
+        }
+        .listen-link:hover {
+            border-color: var(--accent-purple); color: var(--accent-purple);
+            box-shadow: 0 0 24px var(--accent-purple-glow);
+        }
+        .listen-pending {
+            color: var(--metallic-dark);
+            background: transparent;
+            border: 1px dashed var(--border-subtle);
+            cursor: not-allowed;
+        }
+
         ol.tracklist { list-style: none; }
         ol.tracklist li {
             display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: baseline;
@@ -122,6 +146,13 @@
         </div>
 
         <main>
+            <div class="section-label">Listen <span>2026-06-02</span></div>
+            <div class="listen-row">
+                <span class="listen-pending">Mixcloud — coming soon</span>
+                <span class="listen-pending">Audio Download — coming soon</span>
+                <span class="listen-pending">Video Download — coming soon</span>
+            </div>
+
             <div class="section-label">Tracklist <span>energy-ascending</span></div>
             <ol class="tracklist">
                 <li><span class="t-num">01</span><span><span class="t-artist">Skull Snaps</span> — <span class="t-song">It's a New Day</span></span></li>
