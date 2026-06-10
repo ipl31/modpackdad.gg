@@ -1,0 +1,59 @@
+{
+  "categories": [
+    {
+      "name": "dev",
+      "links": [
+        { "name": "GitHub",         "url": "https://github.com",                "icon": "🐙" },
+        { "name": "Vercel",         "url": "https://vercel.com",                "icon": "▲"  },
+        { "name": "MDN",            "url": "https://developer.mozilla.org",     "icon": "📘" },
+        { "name": "Stack Overflow", "url": "https://stackoverflow.com" },
+        { "name": "npm",            "url": "https://www.npmjs.com",             "icon": "📦" },
+        { "name": "Can I Use",      "url": "https://caniuse.com" },
+        { "name": "Regex101",       "url": "https://regex101.com" },
+        { "name": "Excalidraw",     "url": "https://excalidraw.com" }
+      ]
+    },
+    {
+      "name": "read",
+      "links": [
+        { "name": "Hacker News",     "url": "https://news.ycombinator.com",     "icon": "🔶" },
+        { "name": "Lobsters",        "url": "https://lobste.rs" },
+        { "name": "Are.na",          "url": "https://are.na" },
+        { "name": "The Browser",     "url": "https://thebrowser.com" },
+        { "name": "Aeon",            "url": "https://aeon.co" },
+        { "name": "Daring Fireball", "url": "https://daringfireball.net" },
+        { "name": "The Verge",       "url": "https://www.theverge.com" }
+      ]
+    },
+    {
+      "name": "work",
+      "links": [
+        { "name": "Linear",     "url": "https://linear.app",          "icon": "🟣" },
+        { "name": "Notion",     "url": "https://www.notion.so",       "icon": "📝" },
+        { "name": "Slack",      "url": "https://slack.com" },
+        { "name": "Calendar",   "url": "https://calendar.google.com" },
+        { "name": "Gmail",      "url": "https://mail.google.com" },
+        { "name": "Figma",      "url": "https://www.figma.com" },
+        { "name": "1Password",  "url": "https://1password.com" }
+      ]
+    },
+    {
+      "name": "ai",
+      "links": [
+        { "name": "Claude",             "url": "https://claude.ai",         "icon": "✦" },
+        { "name": "ChatGPT",            "url": "https://chat.openai.com" },
+        { "name": "Anthropic Console",  "url": "https://console.anthropic.com" },
+        { "name": "Cursor",             "url": "https://cursor.sh" }
+      ]
+    },
+    {
+      "name": "media",
+      "links": [
+        { "name": "YouTube",    "url": "https://www.youtube.com" },
+        { "name": "Spotify",    "url": "https://open.spotify.com" },
+        { "name": "Letterboxd", "url": "https://letterboxd.com" },
+        { "name": "Bandcamp",   "url": "https://bandcamp.com" }
+      ]
+    }
+  ]
+}
