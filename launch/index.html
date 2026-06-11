@@ -163,6 +163,13 @@
     .filter input::placeholder {
       color: var(--mute);
     }
+
+    .cat-h .count.match-count {
+      color: var(--accent);
+      font-size: 9.5px;
+      text-transform: lowercase;
+      letter-spacing: 0;
+    }
   </style>
 </head>
 <body>
@@ -232,6 +239,22 @@
 
       document.getElementById('link-count').textContent = totalLinks;
       document.getElementById('cat-count').textContent = renderedCats;
+
+      // build filter index for use by applyFilter()
+      window.__filterIndex = [...grid.querySelectorAll('.category')].map(section => {
+        const links = [...section.querySelectorAll('.link')].map(a => ({
+          el: a,
+          name: a.dataset.name,
+          cat: a.dataset.cat,
+        }));
+        return {
+          section,
+          countEl: section.querySelector('.cat-h .count'),
+          originalCount: links.length,
+          name: section.dataset.cat,
+          links,
+        };
+      });
     }
 
     async function load() {
@@ -248,8 +271,47 @@
         msg.style.color = 'var(--err)';
       }
     }
+    function applyFilter(query) {
+      const q = query.trim().toLowerCase();
+      const index = window.__filterIndex || [];
+
+      if (!q) {
+        // reset: show everything, restore counts
+        for (const cat of index) {
+          cat.section.style.display = '';
+          for (const item of cat.links) item.el.style.display = '';
+          cat.countEl.textContent = cat.originalCount;
+          cat.countEl.classList.remove('match-count');
+        }
+        return;
+      }
+
+      for (const cat of index) {
+        const catMatches = cat.name.toLowerCase().includes(q);
+        let visibleInCat = 0;
+
+        for (const item of cat.links) {
+          const nameMatches = item.name.toLowerCase().includes(q);
+          const visible = nameMatches || catMatches;
+          item.el.style.display = visible ? '' : 'none';
+          if (visible) visibleInCat++;
+        }
+
+        if (visibleInCat === 0) {
+          cat.section.style.display = 'none';
+        } else {
+          cat.section.style.display = '';
+          cat.countEl.textContent = visibleInCat === 1 ? '1 match' : visibleInCat + ' matches';
+          cat.countEl.classList.add('match-count');
+        }
+      }
+    }
+
     function wireKeyboard() {
       const input = document.getElementById('filter-input');
+
+      input.addEventListener('input', () => applyFilter(input.value));
+
       document.addEventListener('keydown', (e) => {
         const focused = document.activeElement === input;
         if (e.key === '/' && !focused) {
