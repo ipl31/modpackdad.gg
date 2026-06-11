@@ -53,14 +53,82 @@
     .prompt .path { color: var(--mute); }
     .prompt .meta { color: var(--mute); }
 
-    .grid { padding: 6px 36px 36px; }
-
     .msg {
       padding: 32px 36px;
       text-align: center;
       font-size: 13px;
       color: var(--mute);
     }
+
+    .grid {
+      padding: 6px 36px 36px;
+      column-width: 240px;
+      column-gap: 32px;
+      column-fill: balance;
+    }
+
+    .category {
+      break-inside: avoid;
+      margin-bottom: 24px;
+    }
+
+    .cat-h {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .cat-h .rule {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(255, 176, 0, 0.25), transparent);
+    }
+    .cat-h .count {
+      font-size: 9.5px;
+      color: var(--mute);
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+
+    .links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .link {
+      color: var(--ink);
+      text-decoration: none;
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+      padding: 1.5px 0;
+      font-size: 13px;
+      line-height: 1.5;
+      transition: color 0.12s ease;
+    }
+    .link .marker {
+      width: 10px;
+      flex-shrink: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .link .icon {
+      width: 16px;
+      flex-shrink: 0;
+      text-align: left;
+    }
+    .link .name { color: var(--ink); }
+
+    .link:hover .name,
+    .link:focus-visible .name { color: #ffffff; }
+    .link:hover .icon,
+    .link:focus-visible .icon { color: var(--accent); }
   </style>
 </head>
 <body>
@@ -75,21 +143,75 @@
   <div id="msg" class="msg" role="status"></div>
 
   <script>
-    (async () => {
+    function escapeText(s) {
+      // Defence in depth — bookmarks.json is hand-edited but treating it as untrusted is cheap.
+      return String(s).replace(/[&<>"']/g, c => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[c]));
+    }
+
+    function renderGrid(data) {
+      const cats = data?.categories ?? [];
+      const grid = document.getElementById('grid');
+      grid.innerHTML = '';
+
+      let totalLinks = 0;
+      let renderedCats = 0;
+
+      for (const cat of cats) {
+        if (!cat.links?.length) continue;
+        renderedCats++;
+        totalLinks += cat.links.length;
+
+        const section = document.createElement('section');
+        section.className = 'category';
+        section.dataset.cat = cat.name;
+        section.innerHTML =
+          '<h2 class="cat-h">' +
+            '<span class="cat-name">' + escapeText(cat.name) + '</span>' +
+            '<span class="rule"></span>' +
+            '<span class="count">' + cat.links.length + '</span>' +
+          '</h2>' +
+          '<ul class="links"></ul>';
+
+        const ul = section.querySelector('.links');
+        for (const link of cat.links) {
+          const li = document.createElement('li');
+          const iconCell = link.icon
+            ? '<span class="icon">' + escapeText(link.icon) + '</span>'
+            : '<span class="icon"></span>';
+          li.innerHTML =
+            '<a class="link" href="' + escapeText(link.url) + '"' +
+            ' data-name="' + escapeText(link.name) + '"' +
+            ' data-cat="' + escapeText(cat.name) + '">' +
+              '<span class="marker"></span>' +
+              iconCell +
+              '<span class="name">' + escapeText(link.name) + '</span>' +
+            '</a>';
+          ul.appendChild(li);
+        }
+        grid.appendChild(section);
+      }
+
+      document.getElementById('link-count').textContent = totalLinks;
+      document.getElementById('cat-count').textContent = renderedCats;
+    }
+
+    async function load() {
+      const msg = document.getElementById('msg');
       try {
         const res = await fetch('./bookmarks.json');
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
-        const totalLinks = data.categories.reduce((n, c) => n + (c.links?.length || 0), 0);
-        const totalCats = data.categories.filter(c => c.links?.length > 0).length;
-        document.getElementById('link-count').textContent = totalLinks;
-        document.getElementById('cat-count').textContent = totalCats;
+        if (!Array.isArray(data?.categories)) data.categories = [];
+        renderGrid(data);
       } catch (e) {
         console.error('failed to load bookmarks.json', e);
-        document.getElementById('msg').textContent = 'failed to load bookmarks.json';
-        document.getElementById('msg').style.color = 'var(--err)';
+        msg.textContent = 'failed to load bookmarks.json';
+        msg.style.color = 'var(--err)';
       }
-    })();
+    }
+    load();
   </script>
 </body>
 </html>
