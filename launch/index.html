@@ -170,6 +170,16 @@
       text-transform: lowercase;
       letter-spacing: 0;
     }
+
+    .link .name mark {
+      background: transparent;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .link.top-match .marker::before {
+      content: "›";
+    }
   </style>
 </head>
 <body>
@@ -245,6 +255,7 @@
         const links = [...section.querySelectorAll('.link')].map(a => ({
           el: a,
           name: a.dataset.name,
+          nameLower: a.dataset.name.toLowerCase(),
           cat: a.dataset.cat,
         }));
         return {
@@ -252,6 +263,7 @@
           countEl: section.querySelector('.cat-h .count'),
           originalCount: links.length,
           name: section.dataset.cat,
+          nameLower: section.dataset.cat.toLowerCase(),
           links,
         };
       });
@@ -276,10 +288,14 @@
       const index = window.__filterIndex || [];
 
       if (!q) {
-        // reset: show everything, restore counts
+        // reset: show everything, restore counts, wipe highlight markup and top-match class
         for (const cat of index) {
           cat.section.style.display = '';
-          for (const item of cat.links) item.el.style.display = '';
+          for (const item of cat.links) {
+            item.el.style.display = '';
+            item.el.querySelector('.name').textContent = item.name;
+            item.el.classList.remove('top-match');
+          }
           cat.countEl.textContent = cat.originalCount;
           cat.countEl.classList.remove('match-count');
         }
@@ -287,13 +303,27 @@
       }
 
       for (const cat of index) {
-        const catMatches = cat.name.toLowerCase().includes(q);
+        const catMatches = cat.nameLower.includes(q);
         let visibleInCat = 0;
 
         for (const item of cat.links) {
-          const nameMatches = item.name.toLowerCase().includes(q);
+          const nameLower = item.nameLower;
+          const nameMatches = nameLower.includes(q);
           const visible = nameMatches || catMatches;
+
           item.el.style.display = visible ? '' : 'none';
+          const nameEl = item.el.querySelector('.name');
+
+          if (visible && nameMatches) {
+            const idx = nameLower.indexOf(q);
+            nameEl.innerHTML =
+              escapeText(item.name.slice(0, idx)) +
+              '<mark>' + escapeText(item.name.slice(idx, idx + q.length)) + '</mark>' +
+              escapeText(item.name.slice(idx + q.length));
+          } else {
+            nameEl.textContent = item.name;
+          }
+
           if (visible) visibleInCat++;
         }
 
@@ -305,6 +335,14 @@
           cat.countEl.classList.add('match-count');
         }
       }
+
+      // clear previous top-match marker
+      for (const cat of index) {
+        for (const item of cat.links) item.el.classList.remove('top-match');
+      }
+      // mark the first remaining link in document order
+      const firstVisible = document.querySelector('.link:not([style*="display: none"])');
+      if (firstVisible) firstVisible.classList.add('top-match');
     }
 
     function wireKeyboard() {
