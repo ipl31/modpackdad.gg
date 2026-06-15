@@ -59,6 +59,9 @@
       font-size: 13px;
       color: var(--mute);
     }
+    .msg.nomatch { color: var(--accent); }
+    .msg.empty { color: var(--mute); }
+    .msg.err { color: var(--err); }
 
     .grid {
       padding: 6px 36px 36px;
@@ -269,20 +272,26 @@
       });
     }
 
-    async function load() {
-      const msg = document.getElementById('msg');
-      try {
-        const res = await fetch('./bookmarks.json');
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const data = await res.json();
-        if (!Array.isArray(data?.categories)) data.categories = [];
-        renderGrid(data);
-      } catch (e) {
-        console.error('failed to load bookmarks.json', e);
-        msg.textContent = 'failed to load bookmarks.json';
-        msg.style.color = 'var(--err)';
+  async function load() {
+    const msg = document.getElementById('msg');
+    try {
+      const res = await fetch('./bookmarks.json');
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+
+      const hasAny = data.categories?.some(c => c.links?.length > 0);
+      if (!hasAny) {
+        msg.textContent = 'no links yet — edit bookmarks.json';
+        msg.className = 'msg empty';
+        return;
       }
+      renderGrid(data);
+    } catch (e) {
+      console.error('failed to load bookmarks.json', e);
+      msg.textContent = 'failed to load bookmarks.json';
+      msg.className = 'msg err';
     }
+  }
     function applyFilter(query) {
       const q = query.trim().toLowerCase();
       const index = window.__filterIndex || [];
@@ -299,6 +308,9 @@
           cat.countEl.textContent = cat.originalCount;
           cat.countEl.classList.remove('match-count');
         }
+        const msg = document.getElementById('msg');
+        msg.textContent = '';
+        msg.className = 'msg';
         return;
       }
 
@@ -343,6 +355,15 @@
       // mark the first remaining link in document order
       const firstVisible = document.querySelector('.link:not([style*="display: none"])');
       if (firstVisible) firstVisible.classList.add('top-match');
+
+      const msg = document.getElementById('msg');
+      if (firstVisible) {
+        msg.textContent = '';
+        msg.className = 'msg';
+      } else {
+        msg.textContent = 'no matches for "' + query + '" — esc to clear';
+        msg.className = 'msg nomatch';
+      }
     }
 
     function wireKeyboard() {
@@ -353,7 +374,6 @@
       document.addEventListener('keydown', (e) => {
         const focused = document.activeElement === input;
         if (e.key === '/' && !focused) {
-          // user pressed `/` outside the input — focus it without the slash being typed
           e.preventDefault();
           input.focus();
           input.select();
@@ -362,6 +382,10 @@
           input.value = '';
           input.dispatchEvent(new Event('input', { bubbles: true }));
           input.blur();
+        } else if (e.key === 'Enter' && focused) {
+          e.preventDefault();
+          const top = document.querySelector('.link.top-match');
+          if (top) window.location.href = top.href;
         }
       });
     }
