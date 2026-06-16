@@ -41,6 +41,12 @@
       ]
     },
     {
+      "name": "infra",
+      "links": [
+        { "name": "TrueNAS", "url": "https://nas.kc2.at:444/", "icon": "🗄️" }
+      ]
+    },
+    {
       "name": "me",
       "links": [
         { "name": "YouTube",      "url": "https://www.youtube.com/@modpackdad",     "icon": "▶️" },
