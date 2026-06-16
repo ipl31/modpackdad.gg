@@ -44,14 +44,11 @@
     {
       "name": "me",
       "links": [
-        { "name": "YouTube",      "url": "https://www.youtube.com/@modpackdad",     "icon": "▶️" },
-        { "name": "Twitch",       "url": "https://www.twitch.tv/modpackdad",        "icon": "💜" },
-        { "name": "TikTok",       "url": "https://www.tiktok.com/@modpackdad",      "icon": "🎵" },
-        { "name": "Twitch DJ",    "url": "https://www.twitch.tv/selector_mpd",      "icon": "💜" },
-        { "name": "Mixcloud",     "url": "https://www.mixcloud.com/Selector_MPD/",  "icon": "🎧" },
-        { "name": "Spotify",      "url": "https://open.spotify.com" },
-        { "name": "Letterboxd",   "url": "https://letterboxd.com" },
-        { "name": "Bandcamp",     "url": "https://bandcamp.com" }
+        { "name": "YouTube",   "url": "https://www.youtube.com/@modpackdad",    "icon": "▶️" },
+        { "name": "Twitch",    "url": "https://www.twitch.tv/modpackdad",       "icon": "💜" },
+        { "name": "TikTok",    "url": "https://www.tiktok.com/@modpackdad",     "icon": "🎵" },
+        { "name": "Twitch DJ", "url": "https://www.twitch.tv/selector_mpd",     "icon": "💜" },
+        { "name": "Mixcloud",  "url": "https://www.mixcloud.com/Selector_MPD/", "icon": "🎧" }
       ]
     }
   ]
