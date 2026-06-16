@@ -37,8 +37,7 @@
       "links": [
         { "name": "Claude",             "url": "https://claude.ai",         "icon": "✦" },
         { "name": "ChatGPT",            "url": "https://chat.openai.com" },
-        { "name": "Anthropic Console",  "url": "https://console.anthropic.com" },
-        { "name": "Cursor",             "url": "https://cursor.sh" }
+        { "name": "Anthropic Console",  "url": "https://console.anthropic.com" }
       ]
     },
     {
