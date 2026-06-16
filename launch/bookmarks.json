@@ -3,14 +3,9 @@
     {
       "name": "dev",
       "links": [
-        { "name": "GitHub",         "url": "https://github.com",                "icon": "🐙" },
-        { "name": "Vercel",         "url": "https://vercel.com",                "icon": "▲"  },
-        { "name": "MDN",            "url": "https://developer.mozilla.org",     "icon": "📘" },
-        { "name": "Stack Overflow", "url": "https://stackoverflow.com" },
-        { "name": "npm",            "url": "https://www.npmjs.com",             "icon": "📦" },
-        { "name": "Can I Use",      "url": "https://caniuse.com" },
-        { "name": "Regex101",       "url": "https://regex101.com" },
-        { "name": "Excalidraw",     "url": "https://excalidraw.com" }
+        { "name": "Active Issues", "url": "https://github.com/users/ipl31/projects/1", "icon": "🐙" },
+        { "name": "BotOrNot",      "url": "https://github.com/kc2-io/BotOrNot",        "icon": "🐙" },
+        { "name": "Agency",        "url": "https://github.com/ipl31/Agency",            "icon": "🐙" }
       ]
     },
     {
