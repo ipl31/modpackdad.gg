@@ -44,7 +44,8 @@
     {
       "name": "infra",
       "links": [
-        { "name": "TrueNAS", "url": "https://nas.kc2.at:444/", "icon": "🗄️" }
+        { "name": "TrueNAS",         "url": "https://nas.kc2.at:444/",   "icon": "🗄️" },
+        { "name": "Ripping Machine", "url": "http://nas.kc2.at:30173/", "icon": "💿" }
       ]
     },
     {
