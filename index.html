@@ -291,6 +291,17 @@
             box-shadow: 0 8px 30px rgba(168, 85, 247, 0.5);
         }
 
+        .btn--youtube {
+            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.3);
+        }
+
+        .btn--youtube:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 0, 0, 0.5);
+        }
+
         .btn-row {
             display: flex;
             flex-wrap: wrap;
@@ -491,10 +502,16 @@
                         </div>
                         <h2>Gaming</h2>
                         <p>Catch me streaming Fortnite and other games. Come hang out, chat, and watch the chaos unfold live on Twitch.</p>
-                        <a href="https://twitch.tv/ModPackDad" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"/></svg>
-                            Follow on Twitch
-                        </a>
+                        <div class="btn-row">
+                            <a href="https://twitch.tv/ModPackDad" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"/></svg>
+                                Follow on Twitch
+                            </a>
+                            <a href="https://youtube.com/@modpackdad" target="_blank" rel="noopener noreferrer" class="btn btn--youtube">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6a3 3 0 0 0-2.1 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+                                YouTube
+                            </a>
+                        </div>
                     </div>
 
                     <!-- DJ Card -->
