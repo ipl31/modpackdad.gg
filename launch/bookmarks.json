@@ -21,15 +21,9 @@
       ]
     },
     {
-      "name": "work",
+      "name": "productivity",
       "links": [
-        { "name": "Linear",     "url": "https://linear.app",          "icon": "🟣" },
-        { "name": "Notion",     "url": "https://www.notion.so",       "icon": "📝" },
-        { "name": "Slack",      "url": "https://slack.com" },
-        { "name": "Calendar",   "url": "https://calendar.google.com" },
-        { "name": "Gmail",      "url": "https://mail.google.com" },
-        { "name": "Figma",      "url": "https://www.figma.com" },
-        { "name": "1Password",  "url": "https://1password.com" }
+        { "name": "Gmail", "url": "https://mail.google.com/mail/mu/#tl/Inbox" }
       ]
     },
     {
@@ -43,6 +37,7 @@
     {
       "name": "infra",
       "links": [
+        { "name": "Cloudflare Dashboard", "url": "https://dash.cloudflare.com" },
         { "name": "TrueNAS",         "url": "https://nas.kc2.at:444/",   "icon": "🗄️" },
         { "name": "Ripping Machine", "url": "http://nas.kc2.at:30173/", "icon": "💿" }
       ]
