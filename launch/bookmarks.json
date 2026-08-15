@@ -38,6 +38,7 @@
       "name": "infra",
       "links": [
         { "name": "Cloudflare Dashboard", "url": "https://dash.cloudflare.com" },
+        { "name": "deb",                 "url": "https://deb.linuxhit.com", "icon": ">_" },
         { "name": "TrueNAS",         "url": "https://nas.kc2.at:444/",   "icon": "🗄️" },
         { "name": "Ripping Machine", "url": "http://nas.kc2.at:30173/", "icon": "💿" }
       ]
