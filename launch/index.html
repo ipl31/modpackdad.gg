@@ -238,7 +238,7 @@
             ? '<span class="icon">' + escapeText(link.icon) + '</span>'
             : '<span class="icon"></span>';
           li.innerHTML =
-            '<a class="link" href="' + escapeText(link.url) + '"' +
+            '<a class="link" href="' + escapeText(link.url) + '" target="_blank" rel="noopener noreferrer"' +
             ' data-name="' + escapeText(link.name) + '"' +
             ' data-cat="' + escapeText(cat.name) + '">' +
               '<span class="marker"></span>' +
@@ -382,7 +382,7 @@
         } else if (e.key === 'Enter' && focused) {
           e.preventDefault();
           const top = document.querySelector('.link.top-match');
-          if (top) window.location.href = top.href;
+          if (top) window.open(top.href, '_blank', 'noopener,noreferrer');
         }
       });
     }

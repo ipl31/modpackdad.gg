@@ -27,6 +27,12 @@
       ]
     },
     {
+      "name": "school",
+      "links": [
+        { "name": "Canvas", "url": "https://canvas.harvard.edu" }
+      ]
+    },
+    {
       "name": "ai",
       "links": [
         { "name": "Claude",             "url": "https://claude.ai",         "icon": "✦" },
