@@ -41,7 +41,7 @@ Optional secret:
 
 The committed channel ID and public origins in `wrangler.jsonc` are not secrets.
 
-Set `TWITCH_BROADCASTER_USER_ID` and `TWITCH_BOT_USER_ID` as non-secret Worker variables in the production environment. Incoming signed notifications are checked against them.
+Set `TWITCH_BROADCASTER_USER_ID` and `TWITCH_BOT_USER_ID` as non-secret Worker variables in the production environment. Incoming signed notifications are rejected until both are configured and then checked against them. `keep_vars` is enabled so a Wrangler deploy preserves these dashboard-managed values.
 
 ## YouTube authorization
 

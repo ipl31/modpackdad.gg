@@ -203,7 +203,9 @@ export class LiveRoom extends DurableObject {
   async refreshStatus() {
     try {
       const nextStatus = await this.youtube.fetchStatus();
-      this.youtube.markHealthy('Broadcast metadata and chat API available.');
+      if (this.youtubeChatFailureCount === 0 || nextStatus.state !== 'live') {
+        this.youtube.markHealthy('Broadcast metadata API available.');
+      }
       this.providerHealth.youtube = this.youtube.getHealth();
 
       try {
@@ -326,11 +328,13 @@ export class LiveRoom extends DurableObject {
     const subscriptionType = payload.subscription?.type;
     const condition = payload.subscription?.condition || {};
     if (!TWITCH_CHAT_EVENT_TYPES.has(subscriptionType)) return json({ error: 'Unexpected Twitch subscription type' }, 400);
-    if (this.env.TWITCH_BROADCASTER_USER_ID
-      && condition.broadcaster_user_id !== this.env.TWITCH_BROADCASTER_USER_ID) {
+    if (!this.env.TWITCH_BROADCASTER_USER_ID || !this.env.TWITCH_BOT_USER_ID) {
+      return json({ error: 'Twitch EventSub identities are not configured' }, 503);
+    }
+    if (condition.broadcaster_user_id !== this.env.TWITCH_BROADCASTER_USER_ID) {
       return json({ error: 'Unexpected Twitch broadcaster' }, 403);
     }
-    if (this.env.TWITCH_BOT_USER_ID && condition.user_id !== this.env.TWITCH_BOT_USER_ID) {
+    if (condition.user_id !== this.env.TWITCH_BOT_USER_ID) {
       return json({ error: 'Unexpected Twitch bot user' }, 403);
     }
     if (payload.event?.broadcaster_user_id
