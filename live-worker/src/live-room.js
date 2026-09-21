@@ -67,6 +67,7 @@ export class LiveRoom extends DurableObject {
     this.youtubeChatId = '';
     this.nextYouTubeChatPollAt = 0;
     this.youtubeChatFailureCount = 0;
+    this.twitchSubscriptionRevoked = false;
     this.processedTwitchEvents = new Map();
     this.providerHealth = {
       youtube: this.youtube.getHealth(),
@@ -74,7 +75,13 @@ export class LiveRoom extends DurableObject {
     };
 
     ctx.blockConcurrencyWhile(async () => {
-      const stored = await ctx.storage.get(['status', 'providerHealth', 'youtubeState', 'twitchReplayIds']);
+      const stored = await ctx.storage.get([
+        'status',
+        'providerHealth',
+        'youtubeState',
+        'twitchReplayIds',
+        'twitchSubscriptionRevoked',
+      ]);
       this.status = stored.get('status') ?? null;
       this.providerHealth = stored.get('providerHealth') ?? this.providerHealth;
       const youtubeState = stored.get('youtubeState') ?? {};
@@ -82,6 +89,7 @@ export class LiveRoom extends DurableObject {
       this.youtubeChatId = youtubeState.chatId || '';
       this.nextYouTubeChatPollAt = youtubeState.nextPollAt || 0;
       this.youtubeChatFailureCount = youtubeState.failureCount || 0;
+      this.twitchSubscriptionRevoked = stored.get('twitchSubscriptionRevoked') ?? false;
       const now = Date.now();
       this.processedTwitchEvents = new Map(
         (stored.get('twitchReplayIds') ?? []).filter(([, expiresAt]) => expiresAt > now),
@@ -210,14 +218,20 @@ export class LiveRoom extends DurableObject {
 
       try {
         const twitchMetadata = await this.twitch.fetchStreamMetadata();
-        this.twitch.markHealthy(twitchMetadata ? 'Twitch stream and EventSub API available.' : 'Twitch API available; channel offline.');
-        this.providerHealth.twitch = this.twitch.getHealth();
+        if (!this.twitchSubscriptionRevoked) {
+          this.twitch.markHealthy(twitchMetadata
+            ? 'Twitch stream and EventSub API available.'
+            : 'Twitch API available; channel offline.');
+          this.providerHealth.twitch = this.twitch.getHealth();
+        }
         if (nextStatus.broadcast && twitchMetadata) {
           nextStatus.broadcast.category = twitchMetadata.category || nextStatus.broadcast.category;
         }
       } catch (error) {
-        this.twitch.markDegraded(error.message);
-        this.providerHealth.twitch = this.twitch.getHealth();
+        if (!this.twitchSubscriptionRevoked) {
+          this.twitch.markDegraded(error.message);
+          this.providerHealth.twitch = this.twitch.getHealth();
+        }
       }
 
       const nextChatId = nextStatus.state === 'live' ? nextStatus.broadcast?.liveChatId || '' : '';
@@ -343,8 +357,13 @@ export class LiveRoom extends DurableObject {
     }
 
     if (payload.type === 'revocation') {
+      this.twitchSubscriptionRevoked = true;
       this.twitch.markUnavailable(`EventSub revoked: ${payload.subscription?.status || 'unknown reason'}`);
       this.providerHealth.twitch = this.twitch.getHealth();
+      await this.ctx.storage.put({
+        providerHealth: this.providerHealth,
+        twitchSubscriptionRevoked: true,
+      });
       this.broadcast({ type: 'provider.health', providers: this.providerHealth });
       return new Response(null, { status: 204 });
     }
@@ -352,8 +371,13 @@ export class LiveRoom extends DurableObject {
     const result = this.twitch.processNotification(payload, payload.timestamp);
     if (result.directive) this.applyDirective(result.directive);
     if (result.message) this.applyMessage(result.message);
+    this.twitchSubscriptionRevoked = false;
     this.twitch.markHealthy('EventSub chat connected.');
     this.providerHealth.twitch = this.twitch.getHealth();
+    await this.ctx.storage.put({
+      providerHealth: this.providerHealth,
+      twitchSubscriptionRevoked: false,
+    });
     return new Response(null, { status: 204 });
   }
 
