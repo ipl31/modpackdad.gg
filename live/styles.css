@@ -7,7 +7,7 @@
     --line-strong: rgba(255, 255, 255, 0.16);
     --text: #f1f1f5;
     --muted: #a0a0aa;
-    --dim: #70707a;
+    --dim: #a0a0aa;
     --cyan: #00d4e5;
     --cyan-dark: #00a8b5;
     --cyan-glow: rgba(0, 212, 229, 0.32);
@@ -707,7 +707,7 @@ main {
 
 .chat-time {
     margin-left: 7px;
-    color: #5f5f68;
+    color: var(--muted);
     font-size: 0.72rem;
     white-space: nowrap;
 }
