@@ -1,0 +1,31 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "modpackdad-live",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-21",
+  "workers_dev": true,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "LIVE_ROOM",
+        "class_name": "LiveRoom"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["LiveRoom"]
+    }
+  ],
+  "vars": {
+    "YOUTUBE_CHANNEL_ID": "UCogkCA62sd3d2i4otQgkkjg",
+    "TWITCH_CHANNEL_LOGIN": "modpackdad",
+    "ALLOWED_ORIGINS": "https://modpackdad.gg,https://www.modpackdad.gg",
+    "PUBLIC_BASE_URL": "https://modpackdad.gg"
+  }
+}

@@ -1,0 +1,7 @@
+/live/*
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'none'; script-src 'self' https://www.youtube.com https://s.ytimg.com https://www.gstatic.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://i.ytimg.com https://yt3.ggpht.com https://static-cdn.jtvnw.net; frame-src https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self' https://www.youtube.com wss://modpackdad.gg wss://www.modpackdad.gg; media-src 'none'; worker-src 'none'; upgrade-insecure-requests
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: autoplay=(), camera=(), geolocation=(), microphone=(), fullscreen=(self "https://www.youtube.com" "https://www.youtube-nocookie.com")
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Cross-Origin-Opener-Policy: same-origin-allow-popups

@@ -5,6 +5,7 @@ Source for [modpackdad.gg](https://modpackdad.gg), a dependency-free static site
 ## Site areas
 
 - `/` — the main ModPackDad landing page (`index.html`).
+- `/live/` — the ModPackDad YouTube livestream, status, and combined chat experience.
 - `/mpd-bot/` — the MPD Bot product and download landing page.
 - `/mpd-viewer/` — the MPD Viewer product and landing page.
 - `/launch/` — an unlinked, keyboard-driven personal start page backed by `launch/bookmarks.json`.
@@ -16,6 +17,7 @@ Detailed documentation currently covers the `/launch` start page:
 
 - [Design specification](docs/superpowers/specs/2026-06-07-launch-startpage-design.md) — intended behavior, data model, interactions, accessibility, and visual design.
 - [Implementation plan](docs/superpowers/plans/2026-06-08-launch-startpage.md) — historical implementation record and manual verification steps. Some sample data, counts, and local paths reflect the original implementation and may no longer match the current site.
+- [`/live` implementation plan](docs/live-implementation-plan.md) — architecture, provider decisions, security model, and production prerequisites for the live experience.
 
 Keep detailed design and implementation guidance in `docs/`; this README should remain a concise project index rather than duplicate those documents.
 
