@@ -6,6 +6,7 @@ Source for [modpackdad.gg](https://modpackdad.gg), a dependency-free static site
 
 - `/` — the main ModPackDad landing page (`index.html`).
 - `/mpd-bot/` — the MPD Bot product and download landing page.
+- `/mpd-viewer/` — the MPD Viewer product and landing page.
 - `/launch/` — an unlinked, keyboard-driven personal start page backed by `launch/bookmarks.json`.
 - `/setlists/` — Selector MPD set guides.
 
