@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Watch ModPackDad live on YouTube and follow Twitch and YouTube chat together in one place.">
+    <meta name="theme-color" content="#15151a">
+    <title>ModPackDad Live | Watch the Stream</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://i.ytimg.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#live-content">Skip to live content</a>
+    <div class="page-glow" aria-hidden="true"></div>
+
+    <header class="site-header shell">
+        <a class="brand" href="/" aria-label="ModPackDad home">
+            <img src="../logo.jpg" alt="" width="48" height="48">
+            <span>ModPackDad</span>
+        </a>
+        <nav aria-label="Live stream links">
+            <a href="/">Home</a>
+            <a href="https://twitch.tv/ModPackDad" target="_blank" rel="noopener noreferrer">Twitch</a>
+            <a href="https://youtube.com/@modpackdad" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </nav>
+    </header>
+
+    <main id="live-content" class="shell">
+        <section class="hero" aria-labelledby="page-title">
+            <div>
+                <p class="eyebrow">ModPackDad Broadcast</p>
+                <h1 id="page-title">Live from the lobby</h1>
+            </div>
+            <div id="broadcast-state" class="broadcast-state broadcast-state--loading" role="status" aria-live="polite">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span id="broadcast-state-label">Checking stream</span>
+            </div>
+        </section>
+
+        <section class="player-panel" aria-label="Livestream player">
+            <div id="player-shell" class="player-shell" data-state="loading">
+                <section id="youtube-player" class="youtube-player" aria-label="ModPackDad YouTube livestream player"></section>
+                <div id="player-fallback" class="player-fallback">
+                    <div class="fallback-mark" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                            <path d="m10 9 5 3-5 3V9Z" fill="currentColor" stroke="none"></path>
+                        </svg>
+                    </div>
+                    <p id="player-fallback-title" class="fallback-title">Finding the current broadcast…</p>
+                    <p id="player-fallback-copy" class="fallback-copy">The player will appear here when stream information is available.</p>
+                    <a id="fallback-action" class="button button--primary" href="https://youtube.com/@modpackdad" target="_blank" rel="noopener noreferrer">Visit YouTube</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="live-layout">
+            <section class="stream-card panel" aria-labelledby="stream-info-title">
+                <div class="panel-heading">
+                    <div>
+                        <p id="stream-kicker" class="panel-kicker">Stream status</p>
+                        <h2 id="stream-info-title">Stream information</h2>
+                    </div>
+                </div>
+
+                <div id="stream-info" class="stream-info" aria-live="polite">
+                    <h3 id="stream-title">Loading stream details…</h3>
+                    <p id="stream-summary" class="stream-summary">Checking YouTube for a live or scheduled broadcast.</p>
+                    <dl class="stream-facts">
+                        <div id="category-fact" hidden>
+                            <dt>Category</dt>
+                            <dd id="stream-category"></dd>
+                        </div>
+                        <div id="time-fact" hidden>
+                            <dt id="time-label">Started</dt>
+                            <dd id="stream-time"></dd>
+                        </div>
+                        <div>
+                            <dt>Video</dt>
+                            <dd>YouTube Live</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <div class="platform-actions" role="group" aria-label="Watch on streaming platforms">
+                    <a id="youtube-watch-link" class="button button--youtube" href="https://youtube.com/@modpackdad" target="_blank" rel="noopener noreferrer">
+                        <span aria-hidden="true">▶</span> Open on YouTube
+                    </a>
+                    <a class="button button--twitch" href="https://twitch.tv/ModPackDad" target="_blank" rel="noopener noreferrer">
+                        <span aria-hidden="true">◆</span> Open on Twitch
+                    </a>
+                </div>
+
+                <article id="latest-video" class="latest-video" hidden>
+                    <img id="latest-video-thumbnail" src="../logo.jpg" alt="" width="240" height="135">
+                    <div>
+                        <p class="panel-kicker">While the stream is offline</p>
+                        <h3 id="latest-video-title">Latest video</h3>
+                        <a id="latest-video-link" href="https://youtube.com/@modpackdad/videos" target="_blank" rel="noopener noreferrer">Watch the latest upload <span aria-hidden="true">↗</span></a>
+                    </div>
+                </article>
+            </section>
+
+            <section class="chat-card panel" aria-labelledby="chat-title">
+                <div class="panel-heading chat-heading">
+                    <div>
+                        <p class="panel-kicker">Across the stream</p>
+                        <h2 id="chat-title">Combined chat</h2>
+                    </div>
+                    <div id="chat-connection" class="connection-state" role="status" aria-live="polite">
+                        <span aria-hidden="true"></span>
+                        <span id="chat-connection-label">Connecting</span>
+                    </div>
+                </div>
+
+                <div id="provider-health" class="provider-health" role="group" aria-label="Chat provider status">
+                    <span class="provider-pill" data-provider="twitch"><i aria-hidden="true"></i>Twitch</span>
+                    <span class="provider-pill" data-provider="youtube"><i aria-hidden="true"></i>YouTube</span>
+                    <span id="viewer-count" class="viewer-count" hidden></span>
+                </div>
+
+                <div id="chat-log" class="chat-log" role="log" aria-live="polite" aria-relevant="additions removals" tabindex="0">
+                    <div id="chat-empty" class="chat-empty">
+                        <p>Chat messages from Twitch and YouTube will appear here when the stream is live.</p>
+                    </div>
+                </div>
+
+                <button id="jump-latest" class="jump-latest" type="button" hidden>
+                    Jump to latest <span aria-hidden="true">↓</span>
+                </button>
+
+                <p class="chat-note">Read-only combined chat. Twitch and YouTube accounts remain separate identities.</p>
+            </section>
+        </div>
+
+        <section class="reliability-note" aria-label="Service status information">
+            <div aria-hidden="true">i</div>
+            <p><strong>Built to degrade gracefully.</strong> If one chat provider is unavailable, the video and other chat source continue working. You can always open the stream directly on YouTube or Twitch.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="shell">
+            <p>© 2026 ModPackDad — See You in the Lobby</p>
+        </div>
+    </footer>
+
+    <noscript>
+        <div class="noscript-notice">JavaScript is required for live status and combined chat. You can still watch on <a href="https://youtube.com/@modpackdad">YouTube</a>.</div>
+    </noscript>
+
+    <script src="https://www.youtube.com/iframe_api" async></script>
+    <script type="module" src="./live.js"></script>
+</body>
+</html>

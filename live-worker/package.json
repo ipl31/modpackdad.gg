@@ -1,0 +1,20 @@
+{
+  "name": "modpackdad-live-worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Cloudflare Worker and Durable Object for modpackdad.gg/live",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "check": "npm test && wrangler deploy --dry-run --outdir dist",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "setup:twitch": "node scripts/setup-twitch-eventsub.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.136.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
