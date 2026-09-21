@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPD Viewer | Twitch Player Manager</title>
+    <meta name="description" content="MPD Viewer is a Twitch player manager that prioritizes your Twitch time based on your favorite streamers as you rank them, managing as many Twitch windows as you want.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1a1a1f;
+            --bg-card: #222228;
+            --accent-cyan: #00d4e5;
+            --accent-cyan-dim: #00a8b5;
+            --accent-cyan-glow: rgba(0, 212, 229, 0.4);
+            --metallic-light: #e8e8ec;
+            --metallic-mid: #a0a0a8;
+            --text-primary: #f0f0f4;
+            --text-muted: #a0a0aa;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Rajdhani', sans-serif;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(0, 212, 229, 0.11), transparent 52%),
+                radial-gradient(ellipse at 85% 70%, rgba(0, 212, 229, 0.04), transparent 35%),
+                linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.38));
+            pointer-events: none;
+        }
+
+        a:focus-visible {
+            outline: 3px solid var(--accent-cyan);
+            outline-offset: 4px;
+        }
+
+        .container {
+            width: min(100% - 48px, 1100px);
+            margin: 0 auto;
+        }
+
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 28px 0;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--metallic-light);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .brand img {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            object-fit: cover;
+            filter: drop-shadow(0 0 12px var(--accent-cyan-glow));
+        }
+
+        .back-link {
+            color: var(--metallic-mid);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-cyan);
+        }
+
+        main {
+            padding: 72px 0 100px;
+        }
+
+        .hero {
+            max-width: 880px;
+            margin-bottom: 72px;
+        }
+
+        .eyebrow {
+            margin-bottom: 16px;
+            color: var(--accent-cyan);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 20%, var(--metallic-mid) 75%, var(--accent-cyan));
+            background-clip: text;
+            color: transparent;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 10vw, 6.5rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 0.95;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .intro {
+            max-width: 780px;
+            color: var(--metallic-light);
+            font-size: clamp(1.2rem, 3vw, 1.55rem);
+            font-weight: 500;
+            line-height: 1.55;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 36px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 48px;
+            padding: 14px 24px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button--primary {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-cyan-dim));
+            color: var(--bg-dark);
+            box-shadow: 0 4px 22px rgba(0, 212, 229, 0.3);
+        }
+
+        .button--primary:hover {
+            box-shadow: 0 8px 30px rgba(0, 212, 229, 0.48);
+        }
+
+        .button--secondary {
+            border-color: var(--border-subtle);
+            background: linear-gradient(145deg, #34343c, #292930);
+            color: var(--metallic-light);
+        }
+
+        .button--secondary:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 22px rgba(0, 212, 229, 0.18);
+        }
+
+        .button svg {
+            width: 18px;
+            height: 18px;
+            flex: 0 0 auto;
+        }
+
+        .benefits {
+            padding-top: 56px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .benefits h2 {
+            margin-bottom: 32px;
+            color: var(--metallic-light);
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.35rem, 4vw, 2rem);
+            letter-spacing: 0.04em;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .feature {
+            position: relative;
+            overflow: hidden;
+            padding: 30px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            background: linear-gradient(145deg, var(--bg-card), #1e1e24);
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 15%;
+            left: 15%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--metallic-mid), transparent);
+            opacity: 0.4;
+        }
+
+        .feature-num {
+            display: block;
+            margin-bottom: 14px;
+            color: var(--accent-cyan);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+            color: var(--metallic-light);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .feature p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        footer {
+            padding: 36px 0;
+            border-top: 1px solid var(--border-subtle);
+            color: #777780;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 0.16em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                width: min(100% - 32px, 1100px);
+            }
+
+            .site-header {
+                padding: 20px 0;
+            }
+
+            .brand span {
+                display: none;
+            }
+
+            main {
+                padding: 52px 0 72px;
+            }
+
+            .hero {
+                margin-bottom: 56px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature {
+                padding: 26px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .button,
+            .back-link {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <a class="brand" href="/" aria-label="ModPackDad home">
+                <img src="../logo.jpg" alt="">
+                <span>ModPackDad</span>
+            </a>
+            <a class="back-link" href="/">← Back to home</a>
+        </header>
+
+        <main>
+            <section class="hero" aria-labelledby="page-title">
+                <p class="eyebrow">Twitch Stream Manager</p>
+                <h1 id="page-title">MPD Viewer</h1>
+                <p class="intro">MPD Viewer is a Twitch player manager that prioritizes your Twitch time based on your favorite streamers as you rank them, managing as many Twitch windows as you want.</p>
+                <div class="actions">
+                    <a class="button button--primary" href="https://github.com/kc2-io/MPD_Viewer" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                        View on GitHub
+                    </a>
+                </div>
+            </section>
+
+            <section class="benefits" aria-labelledby="benefits-title">
+                <h2 id="benefits-title">Why use MPD Viewer</h2>
+                <div class="feature-grid">
+                    <article class="feature">
+                        <span class="feature-num">01</span>
+                        <h3>Streamer Priority Ranking</h3>
+                        <p>Set and maintain your own priority list so you never miss your favorite streamers when they go live.</p>
+                    </article>
+                    <article class="feature">
+                        <span class="feature-num">02</span>
+                        <h3>Multi-Window Control</h3>
+                        <p>Seamlessly manage as many Twitch stream windows as you want with configurable capacity and layout options.</p>
+                    </article>
+                    <article class="feature">
+                        <span class="feature-num">03</span>
+                        <h3>Smart Audio &amp; Focus</h3>
+                        <p>Automatically manage volume and stream focus according to your rank order without manual toggling.</p>
+                    </article>
+                    <article class="feature">
+                        <span class="feature-num">04</span>
+                        <h3>Desktop Native</h3>
+                        <p>Fast, lightweight desktop experience built to run cleanly in the background alongside your daily workflow.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2026 ModPackDad — See You in the Lobby</p>
+        </footer>
+    </div>
+</body>
+</html>
