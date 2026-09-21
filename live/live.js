@@ -35,6 +35,8 @@ const elements = {
 const state = {
     player: null,
     playerVideoId: null,
+    playerMountGeneration: 0,
+    playerPending: false,
     status: null,
     messages: new Map(),
     socket: null,
@@ -170,9 +172,11 @@ function waitForYouTubeApi(timeoutMs = 10_000) {
     });
 }
 
-function resetPlayerContainer() {
+function resetPlayerContainer({ invalidatePending = true } = {}) {
+    if (invalidatePending) state.playerMountGeneration += 1;
     if (state.player?.destroy) state.player.destroy();
     state.player = null;
+    state.playerPending = false;
     let container = document.getElementById('youtube-player');
     if (!container || container.tagName === 'IFRAME') {
         container?.remove();
@@ -187,14 +191,18 @@ function resetPlayerContainer() {
 }
 
 async function mountPlayer(videoId) {
-    if (!videoId || state.playerVideoId === videoId) return;
+    if (!videoId || (state.playerVideoId === videoId && (state.player || state.playerPending))) return;
 
+    const generation = state.playerMountGeneration + 1;
+    state.playerMountGeneration = generation;
     state.playerVideoId = videoId;
-    resetPlayerContainer();
+    resetPlayerContainer({ invalidatePending: false });
+    state.playerPending = true;
     elements.playerShell.dataset.state = 'loading';
 
     try {
         const YT = await waitForYouTubeApi();
+        if (generation !== state.playerMountGeneration || state.playerVideoId !== videoId) return;
         state.player = new YT.Player('youtube-player', {
             videoId,
             width: '100%',
@@ -208,10 +216,13 @@ async function mountPlayer(videoId) {
             },
             events: {
                 onReady: () => {
+                    if (generation !== state.playerMountGeneration || state.playerVideoId !== videoId) return;
+                    state.playerPending = false;
                     elements.playerShell.dataset.state = 'ready';
                     reportTelemetry('player_ready', { videoId });
                 },
                 onError: (event) => {
+                    if (generation !== state.playerMountGeneration || state.playerVideoId !== videoId) return;
                     state.playerVideoId = null;
                     resetPlayerContainer();
                     showPlayerFallback(
@@ -224,6 +235,7 @@ async function mountPlayer(videoId) {
             },
         });
     } catch (error) {
+        if (generation !== state.playerMountGeneration || state.playerVideoId !== videoId) return;
         state.playerVideoId = null;
         resetPlayerContainer();
         showPlayerFallback(
@@ -448,8 +460,8 @@ function updateProviderHealth(health = {}) {
         pill.dataset.status = health[provider]?.status || 'unknown';
         const detail = health[provider]?.message;
         pill.title = detail || `${provider} status: ${pill.dataset.status}`;
-        const label = provider === 'youtube' ? 'YouTube' : 'Twitch';
-        pill.setAttribute('aria-label', `${label}: ${pill.dataset.status}`);
+        const statusText = pill.querySelector('.provider-status-text');
+        if (statusText) statusText.textContent = `: ${pill.dataset.status}`;
     }
 }
 

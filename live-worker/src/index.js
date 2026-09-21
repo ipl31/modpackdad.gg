@@ -4,6 +4,12 @@ import { isAllowedOrigin, securityHeaders, verifyTwitchSignature } from './secur
 const TWITCH_MAX_AGE_MS = 10 * 60 * 1_000;
 const MAX_TWITCH_WEBHOOK_BYTES = 256 * 1_024;
 const MAX_TELEMETRY_BYTES = 4_096;
+const TWITCH_CHAT_EVENT_TYPES = new Set([
+  'channel.chat.message',
+  'channel.chat.message_delete',
+  'channel.chat.clear_user_messages',
+  'channel.chat.clear',
+]);
 
 async function readBoundedBody(request, maxBytes) {
   const declaredLength = Number(request.headers.get('content-length') || 0);
@@ -64,6 +70,22 @@ function hasAllowedOrigin(request, env) {
   return isAllowedOrigin(requestOrigin(request), env.ALLOWED_ORIGINS);
 }
 
+function validateTwitchSubscription(payload, env) {
+  if (!env.TWITCH_BROADCASTER_USER_ID || !env.TWITCH_BOT_USER_ID) {
+    return json({ error: 'Twitch EventSub identities are not configured' }, 503);
+  }
+  const subscription = payload.subscription || {};
+  const condition = subscription.condition || {};
+  if (!TWITCH_CHAT_EVENT_TYPES.has(subscription.type)) {
+    return json({ error: 'Unexpected Twitch subscription type' }, 400);
+  }
+  if (condition.broadcaster_user_id !== env.TWITCH_BROADCASTER_USER_ID
+    || condition.user_id !== env.TWITCH_BOT_USER_ID) {
+    return json({ error: 'Unexpected Twitch subscription identity' }, 403);
+  }
+  return null;
+}
+
 async function handleTwitchWebhook(request, env) {
   const messageId = request.headers.get('twitch-eventsub-message-id') || '';
   const timestamp = request.headers.get('twitch-eventsub-message-timestamp') || '';
@@ -97,6 +119,9 @@ async function handleTwitchWebhook(request, env) {
   } catch {
     return json({ error: 'Invalid Twitch EventSub payload' }, 400);
   }
+
+  const subscriptionError = validateTwitchSubscription(payload, env);
+  if (subscriptionError) return subscriptionError;
 
   if (messageType === 'webhook_callback_verification') {
     return new Response(payload.challenge || '', {
