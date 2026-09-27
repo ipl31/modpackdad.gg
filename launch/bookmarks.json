@@ -5,7 +5,9 @@
       "links": [
         { "name": "Active Issues", "url": "https://github.com/users/ipl31/projects/1", "icon": "🐙" },
         { "name": "BotOrNot",      "url": "https://github.com/kc2-io/BotOrNot",        "icon": "🐙" },
-        { "name": "Agency",        "url": "https://github.com/ipl31/Agency",            "icon": "🐙" }
+        { "name": "MPD Viewer",    "url": "https://github.com/kc2-io/MPD_Viewer",       "icon": "🐙" },
+        { "name": "Agent Manager (Fork)",     "url": "https://github.com/ipl31/agent-manager",  "icon": "🐙" },
+        { "name": "Agent Manager (Upstream)", "url": "https://github.com/YoanWai/agent-manager", "icon": "🐙" }
       ]
     },
     {
