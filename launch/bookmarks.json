@@ -31,7 +31,8 @@
     {
       "name": "school",
       "links": [
-        { "name": "Canvas", "url": "https://canvas.harvard.edu" }
+        { "name": "Canvas", "url": "https://canvas.harvard.edu" },
+        { "name": "Moodle", "url": "https://johnkomlos.com/moodle2/login/index.php" }
       ]
     },
     {
