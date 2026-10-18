@@ -243,6 +243,10 @@
             grid-column: span 2;
         }
 
+        .card--full {
+            grid-column: 1 / -1;
+        }
+
         .card--primary {
             border-color: var(--line-bright);
             background:
@@ -327,6 +331,7 @@
         }
 
         .signal-node {
+            min-width: 0;
             padding: 13px;
             border-radius: 4px;
             background: rgba(255, 255, 255, 0.035);
@@ -335,6 +340,7 @@
             font-size: 0.64rem;
             font-weight: 700;
             letter-spacing: 0.06em;
+            overflow-wrap: anywhere;
             text-align: center;
             text-transform: uppercase;
         }
@@ -418,7 +424,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .card--wide {
+            .card--wide,
+            .card--full {
                 grid-column: auto;
             }
 
@@ -478,7 +485,7 @@
                 <div class="section-heading">
                     <div>
                         <p class="section-label">Compute &amp; Transport</p>
-                        <h2 id="compute-title">The machine and the signal</h2>
+                        <h2 id="compute-title">PCs</h2>
                     </div>
                     <p>Game capture stays on the network: gaming OBS sends an NDI feed directly to streaming OBS.</p>
                 </div>
@@ -500,6 +507,12 @@
                     </article>
 
                     <article class="card">
+                        <p class="card-kicker">Streaming Computer</p>
+                        <h3>Apple Mac Studio</h3>
+                        <p>A Mac Studio with M2 Max dedicated to streaming OBS and receiving the gaming PC's NDI feed.</p>
+                    </article>
+
+                    <article class="card card--full">
                         <p class="card-kicker">Capture Workflow</p>
                         <h3>OBS over NDI</h3>
                         <p>No physical capture card. The gaming system sends video from OBS across the network into streaming OBS.</p>
