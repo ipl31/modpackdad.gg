@@ -39,7 +39,9 @@
       "name": "gaming",
       "links": [
         { "name": "Billy Biceps Calendly", "url": "https://calendly.com/coachbilly/1-on-1-coaching", "icon": "🎮" },
-        { "name": "Billy Payment", "url": "https://streamlabs.com/billy_bicep/tip", "icon": "💳" }
+        { "name": "Billy Payment", "url": "https://streamlabs.com/billy_bicep/tip", "icon": "💳" },
+        { "name": "Fortnite Tracker", "url": "https://fortnitetracker.com/fortnite/profile/epic/ModPackDad/matchmaking/overview", "icon": "🎯" },
+        { "name": "Fortnite.GG Stats", "url": "https://fortnite.gg/stats?player=modpackdad", "icon": "📊" }
       ]
     },
     {
