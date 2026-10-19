@@ -36,6 +36,13 @@
       ]
     },
     {
+      "name": "gaming",
+      "links": [
+        { "name": "Billy Biceps Calendly", "url": "https://calendly.com/coachbilly/1-on-1-coaching", "icon": "🎮" },
+        { "name": "Billy Payment", "url": "https://streamlabs.com/billy_bicep/tip", "icon": "💳" }
+      ]
+    },
+    {
       "name": "ai",
       "links": [
         { "name": "Claude",             "url": "https://claude.ai",         "icon": "✦" },
