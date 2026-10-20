@@ -390,37 +390,38 @@
                 <article class="utility-card">
                     <div class="card-heading">
                         <h3>Streamer.bot Giveaway List</h3>
-                        <span class="version">v0.3.0</span>
+                        <span class="version">v0.4.1</span>
                     </div>
-                    <p>Run <strong>!giveawaylist</strong> to save a clean, timestamped list of the people present in your Twitch chat and post plain usernames in chat when the list fits.</p>
+                    <p>Run <strong>!giveawaylist</strong> to fetch the complete Twitch chat roster, save a clean timestamped list, and post the usernames in chat when the list fits.</p>
 
                     <ul class="feature-list">
-                        <li>Includes chat members and connected lurkers</li>
+                        <li>Fetches the Twitch chat roster on every command</li>
+                        <li>Includes connected silent chatters</li>
                         <li>Sorts and removes duplicate login names</li>
                         <li>Writes one username per line</li>
                         <li>Keeps timestamped giveaway history</li>
-                        <li>Posts plain usernames directly to Twitch chat</li>
+                        <li>Never exports a partial or stale roster</li>
                         <li>Supports space or comma chat delimiters</li>
-                        <li>Available to the broadcaster and moderators</li>
+                        <li>Posts short lists directly to Twitch chat</li>
                     </ul>
 
                     <div class="actions">
-                        <a class="button button--primary" href="https://github.com/ipl31/streamerbot-giveaway-list/releases/download/v0.3.0/streamerbot-giveaway-list-0.3.0.sb">
+                        <a class="button button--primary" href="https://github.com/ipl31/streamerbot-giveaway-list/releases/download/v0.4.1/streamerbot-giveaway-list-0.4.1.sb">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M12 3v12m0 0 4-4m-4 4-4-4"/>
                                 <path d="M5 21h14"/>
                             </svg>
-                            Download v0.3.0
+                            Download v0.4.1
                         </a>
                         <a class="button button--secondary" href="https://github.com/ipl31/streamerbot-giveaway-list" target="_blank" rel="noopener noreferrer">
                             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
                             View on GitHub
                         </a>
-                        <a class="button button--secondary" href="https://github.com/ipl31/streamerbot-giveaway-list/releases/tag/v0.3.0" target="_blank" rel="noopener noreferrer">Release Notes</a>
+                        <a class="button button--secondary" href="https://github.com/ipl31/streamerbot-giveaway-list/releases/tag/v0.4.1" target="_blank" rel="noopener noreferrer">Release Notes</a>
                     </div>
 
                     <div class="notice">
-                        <strong>Testing note:</strong> Automated package and behavior checks pass, but native Streamer.bot import and live Twitch chat testing remain outstanding.
+                        <strong>Requirements:</strong> Streamer.bot 1.0.4 or newer and a connected broadcaster token with <code>moderator:read:chatters</code>. Re-import the downloaded action over the existing version.
                     </div>
                 </article>
             </section>
