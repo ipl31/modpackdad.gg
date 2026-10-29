@@ -97,15 +97,21 @@
         h2 { margin-bottom: 16px; font-family: 'Orbitron', sans-serif; font-size: clamp(1.2rem, 4vw, 1.6rem); line-height: 1.4; }
         .package p { max-width: 660px; }
 
-        .download-status {
+        .download-link {
             display: inline-block;
             margin-top: 24px;
             padding: 10px 16px;
-            border: 1px solid var(--line);
+            border: 1px solid var(--cyan);
             border-radius: 4px;
-            color: var(--muted);
-            font-weight: 600;
+            background: var(--cyan);
+            color: var(--bg);
+            font-weight: 700;
+            text-decoration: none;
         }
+
+        .download-link:hover { background: #6ceaf4; }
+        .package .release { margin-top: 12px; color: var(--muted); font-size: 1rem; }
+        .package h3 { margin-top: 28px; margin-bottom: 8px; font-size: 1.3rem; }
 
         footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 1rem; }
 
@@ -133,10 +139,12 @@
             <p class="personal-note">There are probably better setups out there. This is just what I built, and I&rsquo;m sharing it because people asked. Take whatever is useful and make it your own.</p>
 
             <section class="package" aria-labelledby="package-title">
-                <h2 id="package-title">My agent package</h2>
-                <p>I&rsquo;ll be sharing my current agent package here as a ZIP, with the skills and supporting files together in one download.</p>
-                <!-- Replace this status with a download link once the ZIP location is available. -->
-                <p class="download-status">ZIP download coming soon</p>
+                <h2 id="package-title">Short Video Starter</h2>
+                <p>My agent package for turning your own recordings into short video review clips. The ZIP includes setup guidance, editing and retention-review skills, workflow prompts, and supporting scripts.</p>
+                <a class="download-link" href="/ai-editing/downloads/short-video-starter-2026-10-29.zip" download>Download the starter ZIP</a>
+                <p class="release">October 29, 2026 &middot; ZIP &middot; 34 KB</p>
+                <h3>Getting started</h3>
+                <p>Extract the ZIP, open the folder in a local coding agent, and follow <strong>START-HERE.md</strong>. You&rsquo;ll need an agent that can access local files and run commands, plus Python 3.10 or newer and FFmpeg. The included setup guide helps you check the tools and get to your first review clip.</p>
             </section>
         </main>
 

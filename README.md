@@ -8,7 +8,7 @@ Source for [modpackdad.gg](https://modpackdad.gg), a dependency-free static site
 - `/live/` — the ModPackDad YouTube livestream, status, and combined chat experience.
 - `/mpd-bot/` — the MPD Bot product and download landing page.
 - `/mpd-viewer/` — the MPD Viewer product and landing page.
-- `/ai-editing/` — my AI editing agent package and skills, shared because people asked (ZIP download pending).
+- `/ai-editing/` — my AI editing agent package and skills, shared because people asked, with the downloadable Short Video Starter ZIP.
 - `/launch/` — an unlinked, keyboard-driven personal start page backed by `launch/bookmarks.json`.
 - `/setlists/` — Selector MPD set guides.
 
