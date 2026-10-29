@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Editing | ModPackDad</title>
+    <meta name="description" content="My AI editing agent package, including skills and instructions. Just what I built for my own workflow, shared because people asked.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #1a1a1f;
+            --panel: #222228;
+            --cyan: #00d4e5;
+            --text: #e8e8ec;
+            --muted: #a0a0aa;
+            --line: rgba(255, 255, 255, 0.1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(ellipse at 50% 0%, rgba(0, 212, 229, 0.09), transparent 55%), var(--bg);
+            color: var(--text);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        a { color: var(--cyan); text-underline-offset: 4px; }
+        a:focus-visible { outline: 3px solid var(--cyan); outline-offset: 5px; }
+        .container { width: min(100% - 48px, 1100px); margin: 0 auto; }
+
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 28px 0;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-decoration: none;
+        }
+
+        .brand img { width: 46px; height: 46px; border-radius: 50%; }
+        .back-link { color: var(--muted); font-size: 1rem; }
+        .back-link:hover { color: var(--cyan); }
+        main { max-width: 860px; padding: 64px 0 88px; }
+
+        .eyebrow {
+            margin-bottom: 18px;
+            color: var(--cyan);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin-bottom: 28px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.4rem, 8vw, 5rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+        }
+
+        .intro { max-width: 720px; font-size: clamp(1.3rem, 3vw, 1.6rem); }
+
+        .personal-note {
+            margin: 32px 0 48px;
+            padding-left: 22px;
+            border-left: 3px solid var(--cyan);
+        }
+
+        .package {
+            padding: clamp(24px, 5vw, 40px);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: linear-gradient(145deg, var(--panel), #1e1e24);
+        }
+
+        h2 { margin-bottom: 16px; font-family: 'Orbitron', sans-serif; font-size: clamp(1.2rem, 4vw, 1.6rem); line-height: 1.4; }
+        .package p { max-width: 660px; }
+
+        .download-status {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 10px 16px;
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 1rem; }
+
+        @media (max-width: 480px) {
+            .container { width: calc(100% - 32px); }
+            main { padding-top: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <a class="brand" href="/">
+                <img src="/logo.jpg" alt="" width="46" height="46">
+                MODPACKDAD
+            </a>
+            <a class="back-link" href="/">Back to home</a>
+        </header>
+
+        <main>
+            <p class="eyebrow">My workflow, shared</p>
+            <h1>AI Editing</h1>
+            <p class="intro">This is the AI editing agent setup I built for my own workflow, including the skills and instructions that go with it.</p>
+
+            <p class="personal-note">There are probably better setups out there. This is just what I built, and I&rsquo;m sharing it because people asked. Take whatever is useful and make it your own.</p>
+
+            <section class="package" aria-labelledby="package-title">
+                <h2 id="package-title">My agent package</h2>
+                <p>I&rsquo;ll be sharing my current agent package here as a ZIP, with the skills and supporting files together in one download.</p>
+                <!-- Replace this status with a download link once the ZIP location is available. -->
+                <p class="download-status">ZIP download coming soon</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>ModPackDad &mdash; Built for my workflow. Shared for yours.</p>
+        </footer>
+    </div>
+</body>
+</html>
