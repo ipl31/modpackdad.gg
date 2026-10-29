@@ -113,6 +113,25 @@
         .package .release { margin-top: 12px; color: var(--muted); font-size: 1rem; }
         .package h3 { margin-top: 28px; margin-bottom: 8px; font-size: 1.3rem; }
 
+        .setup { margin-top: 48px; }
+        .setup h3 { margin: 28px 0 10px; font-size: 1.3rem; }
+        .setup ol { padding-left: 24px; }
+        .setup li + li { margin-top: 16px; }
+        .setup p + p { margin-top: 16px; }
+        code { font-size: 0.9em; overflow-wrap: anywhere; }
+        pre {
+            margin: 16px 0;
+            padding: 20px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            background: #15151a;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+        pre code { font-size: 1rem; }
+        .starter-prompt { font-family: inherit; }
+        .setup-note { margin-top: 24px; color: var(--muted); }
+
         footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 1rem; }
 
         @media (max-width: 480px) {
@@ -143,8 +162,32 @@
                 <p>My agent package for turning your own recordings into short video review clips. The ZIP includes setup guidance, editing and retention-review skills, workflow prompts, and supporting scripts.</p>
                 <a class="download-link" href="/ai-editing/downloads/short-video-starter-2026-10-29.zip" download>Download the starter ZIP</a>
                 <p class="release">October 29, 2026 &middot; ZIP &middot; 34 KB</p>
-                <h3>Getting started</h3>
-                <p>Extract the ZIP, open the folder in a local coding agent, and follow <strong>START-HERE.md</strong>. You&rsquo;ll need an agent that can access local files and run commands, plus Python 3.10 or newer and FFmpeg. The included setup guide helps you check the tools and get to your first review clip.</p>
+                <p class="release"><a href="#getting-started">New to this? Follow the setup steps below.</a></p>
+            </section>
+
+            <section class="setup" id="getting-started" aria-labelledby="setup-title">
+                <h2 id="setup-title">How to use the ZIP</h2>
+                <ol>
+                    <li><strong>Download and extract it.</strong> Use &ldquo;Extract All&rdquo; on Windows or double-click the ZIP on macOS. Open the extracted <code>short-video-starter-2026-10-29</code> folder that contains <code>START-HERE.md</code>, <code>AGENTS.md</code>, and <code>workflows/</code>. Keep these files together.</li>
+                    <li><strong>Choose Claude Code or Codex.</strong> Install and sign in to either one using the official guides below. You only need one. Open the extracted folder as your local project, or launch its terminal command from that folder.</li>
+                    <li><strong>Send the starter prompt below.</strong> The agent will read the package, ask about your recording and preferences, and check the tools on your computer. You&rsquo;ll need Python 3.10 or newer and FFmpeg; the setup guide helps with missing tools. Local transcription is optional.</li>
+                    <li><strong>Choose a recording and review your first clip.</strong> Give the agent the path to a video on your computer and tell it whether you want TikTok, YouTube Shorts, or Instagram Reels. When it finishes, look under <code>workspace/outputs</code> for <code>episode.mp4</code> and <code>review.html</code>. Watch the clip, then ask for changes using timestamps.</li>
+                </ol>
+
+                <h3>With Claude Code</h3>
+                <p>Follow the <a href="https://code.claude.com/docs/en/quickstart">official Claude Code setup guide</a>. Once installed, open a terminal in the extracted folder and run:</p>
+                <pre><code>claude</code></pre>
+                <p>Sign in if prompted, then paste the starter prompt into the Claude Code conversation.</p>
+
+                <h3>With Codex</h3>
+                <p>Follow the <a href="https://learn.chatgpt.com/docs/codex/cli">official Codex CLI setup guide</a>. Once installed, open a terminal in the extracted folder and run:</p>
+                <pre><code>codex</code></pre>
+                <p>Sign in if prompted, then paste the starter prompt into the Codex conversation. If you use Codex in a desktop app or editor, open the extracted folder as the project and start a local chat there.</p>
+
+                <h3>Copy and paste this starter prompt</h3>
+                <pre class="starter-prompt">Read START-HERE.md and AGENTS.md. Use the video-workspace-setup skill to ask me the five first-run questions, check this computer, and help me create my first short video. I am a beginner: explain any missing tools simply and guide me one step at a time. Do not upload my recordings or publish anything. After setup, use creator-shortform and creator-retention-review to make a playable first review clip from the video I choose.</pre>
+
+                <p class="setup-note">The ZIP contains instructions and scripts; extracting it does not install or run them. Start the agent in the extracted folder and send the prompt so it can read the included workflows. Attaching the ZIP to a regular chat alone does not provide the local tools needed to edit video. See <code>START-HERE.md</code> and <code>SETUP.md</code> inside the ZIP for more help. Access to your chosen agent may have its own cost.</p>
             </section>
         </main>
 
