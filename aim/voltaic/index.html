@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Voltaic S5.5 Rank &amp; Results | ModPackDad</title>
+    <meta name="description" content="ModPackDad's Voltaic Season 5.5 Novice rank, skill profile, and scenario scores, with progress toward each rank threshold.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="voltaic.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to results</a>
+    <div class="shell">
+        <header class="site-header">
+            <a class="brand" href="/" aria-label="ModPackDad home"><img src="/logo.jpg" alt="" width="46" height="46">ModPackDad</a>
+            <a href="/aim/">← Aim routine</a>
+        </header>
+        <main id="main">
+            <nav class="view-nav" aria-label="Aim training views">
+                <a href="/aim/">Routine &amp; results</a>
+                <a href="/aim/voltaic/" aria-current="page">Voltaic S5.5</a>
+            </nav>
+            <section class="hero" aria-labelledby="page-title">
+                <p class="eyebrow">Season 5.5 · Novice benchmarks</p>
+                <h1 id="page-title">My Voltaic Rank</h1>
+                <p class="intro">Where my aim stands across clicking, tracking, and target switching.</p>
+                <div class="summary" aria-label="Benchmark summary">
+                    <div class="stat"><span>Overall rank</span><strong id="overall-rank">—</strong></div>
+                    <div class="stat"><span>EVXL energy</span><strong id="energy">—</strong></div>
+                    <div class="stat"><span>Novice leaderboard</span><strong id="position">—</strong></div>
+                    <div class="stat"><span>Scenarios ranked</span><strong id="ranked-count">—</strong></div>
+                </div>
+                <div class="source-line">
+                    <p id="snapshot-date" role="status">Loading ranking snapshot…</p>
+                    <a href="https://evxl.app/u/76561197968707740/Voltaic%20S5.5/Novice?tab=charts" target="_blank" rel="noopener noreferrer">View latest on EVXL ↗</a>
+                </div>
+                <p class="snapshot-note">A dated snapshot of my public benchmark results. Scores and rankings can change between updates.</p>
+                <noscript><p>Enable JavaScript to view the charts and score cards, or use the EVXL link above.</p></noscript>
+            </section>
+
+            <div id="dashboard" hidden>
+                <div class="chart-grid">
+                    <section class="panel" aria-labelledby="profile-title">
+                        <p class="eyebrow">Nine skills · Three disciplines</p>
+                        <h2 id="profile-title">Skill profile</h2>
+                        <p class="muted">Best scenario progress in each skill, on a shared rank scale.</p>
+                        <div id="radar"></div>
+                        <p class="chart-note">Rings mark Iron, Bronze, Silver, and Gold. Gold scores reach the outer ring. The list below gives the same results in text.</p>
+                        <ul class="skill-list" id="skill-list"></ul>
+                    </section>
+                    <section class="panel" aria-labelledby="distribution-title">
+                        <p class="eyebrow">All 21 scenarios</p>
+                        <h2 id="distribution-title">Rank distribution</h2>
+                        <p class="muted">Each scenario counts once, including scores below Iron.</p>
+                        <div id="distribution" class="distribution"></div>
+                        <div class="highlight"><p class="eyebrow">Closest next rank</p><h3 id="closest-name"></h3><p id="closest-detail"></p></div>
+                        <p class="chart-note">Closest is measured as the smallest fraction of the current rank interval remaining. Raw scores use different scales across scenarios.</p>
+                    </section>
+                </div>
+
+                <section class="results" aria-labelledby="results-title">
+                    <div class="section-heading"><div><p class="eyebrow">Scores &amp; thresholds</p><h2 id="results-title">Scenario results</h2></div><p id="result-count" aria-live="polite"></p></div>
+                    <div class="filters">
+                        <div><label for="scenario-search">Find a scenario</label><input type="search" id="scenario-search" placeholder="Search scenario names" autocomplete="off"></div>
+                        <div><label for="category-filter">Discipline</label><select id="category-filter"><option value="all">All disciplines</option><option>Clicking</option><option>Tracking</option><option>Switching</option></select></div>
+                        <div><label for="scenario-sort">Sort results</label><select id="scenario-sort"><option value="benchmark">Benchmark order</option><option value="rank">Highest rank progress</option><option value="next">Closest to next rank</option><option value="name">Scenario name</option></select></div>
+                    </div>
+                    <div id="scenario-list" class="scenario-grid"></div>
+                </section>
+                <section class="method" aria-labelledby="method-title">
+                    <h2 id="method-title">About these results</h2>
+                    <p>Overall rank, energy, and leaderboard position are reported by EVXL. Scenario best scores and rank thresholds come from the public KovaaK&rsquo;s benchmark data used by EVXL. A scenario&rsquo;s rank is the highest threshold its score reaches; &ldquo;Unranked&rdquo; means below Iron.</p>
+                    <p>The skill chart uses the strongest scenario in each skill and interpolates progress between its rank thresholds. This chart does not calculate the overall Voltaic rank. These are benchmark best scores, while the <a href="/aim/">routine view</a> tracks typical performance using daily medians.</p>
+                    <p id="verified-date"></p>
+                    <a href="../data/voltaic-s55-novice.json">View the snapshot data and sources</a>
+                </section>
+            </div>
+        </main>
+        <footer>ModPackDad · One session at a time.</footer>
+    </div>
+</body>
+</html>
