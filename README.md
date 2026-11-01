@@ -9,6 +9,8 @@ Source for [modpackdad.gg](https://modpackdad.gg), a dependency-free static site
 - `/mpd-bot/` — the MPD Bot product and download landing page.
 - `/mpd-viewer/` — the MPD Viewer product and landing page.
 - `/ai-editing/` — my AI editing agent package and skills, shared because people asked, with the downloadable Short Video Starter ZIP.
+- `/aim/` — daily aim routine and scenario score medians.
+- `/aim/voltaic/` — Voltaic Season 5.5 Novice rank, skill profile, and scenario thresholds. Refresh the public snapshot with `python3 scripts/refresh-voltaic.py`; the page labels when it was captured and links to EVXL for live results.
 - `/launch/` — an unlinked, keyboard-driven personal start page backed by `launch/bookmarks.json`.
 - `/setlists/` — Selector MPD set guides.
 
@@ -21,6 +23,8 @@ Detailed documentation currently covers the `/launch` start page:
 - [`/live` implementation plan](docs/live-implementation-plan.md) — architecture, provider decisions, security model, and production prerequisites for the live experience.
 
 Keep detailed design and implementation guidance in `docs/`; this README should remain a concise project index rather than duplicate those documents.
+
+The Voltaic view uses a committed snapshot rather than calling third-party APIs from visitors' browsers. Run `python3 scripts/refresh-voltaic.py` to update it from EVXL and KovaaK's public endpoints. The refresh validates the player, benchmark, score units, rank thresholds, and scenario count before replacing the JSON. Run `python3 -m unittest discover -s scripts -p 'test_*.py'` for the rank calculation checks. Publish snapshot updates through the usual pull request workflow.
 
 ## Changes and deployment
 

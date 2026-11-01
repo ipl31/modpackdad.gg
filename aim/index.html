@@ -175,6 +175,10 @@
             font-size: 0.9rem;
         }
 
+        .view-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+        .view-nav a { padding: 10px 18px; border: 1px solid var(--line); border-radius: 5px; color: var(--muted); text-decoration: none; font-weight: 600; }
+        .view-nav a[aria-current] { border-color: var(--cyan); color: var(--cyan); background: rgba(0,212,229,.07); }
+
         .day-nav {
             display: flex;
             flex-wrap: wrap;
@@ -566,6 +570,10 @@
         </header>
 
         <main>
+            <nav class="view-nav" aria-label="Aim training views">
+                <a href="/aim/" aria-current="page">Routine &amp; results</a>
+                <a href="/aim/voltaic/">Voltaic S5.5</a>
+            </nav>
             <section class="hero" aria-labelledby="page-title">
                 <p class="eyebrow">Kovaak's · Week 1</p>
                 <h1 id="page-title">Aim Routine &amp; Results</h1>
