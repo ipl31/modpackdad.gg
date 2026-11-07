@@ -4,8 +4,8 @@
   "season": "Voltaic S5.5",
   "difficulty": "Novice",
   "benchmark_id": 2835,
-  "captured_at": "2026-11-01T08:42:18+00:00",
-  "score_verified_at": "2026-11-01T08:28:11.228Z",
+  "captured_at": "2026-11-07T10:37:44+00:00",
+  "score_verified_at": "2026-11-07T10:35:50.984Z",
   "source_profile": "https://evxl.app/u/76561197968707740/Voltaic%20S5.5/Novice?tab=charts",
   "source_urls": [
     "https://api.evxl.app/leaderboard?benchmarkId=2835&page=0&max=1&steamIdSearch=76561197968707740",
@@ -13,8 +13,8 @@
   ],
   "overall": {
     "rank": "Bronze",
-    "energy": 224.3,
-    "leaderboard_position": 67522
+    "energy": 292.7,
+    "leaderboard_position": 58801
   },
   "ranks": [
     "Unranked",
@@ -24,10 +24,10 @@
     "Gold"
   ],
   "distribution": {
-    "Unranked": 2,
-    "Iron": 9,
-    "Bronze": 9,
-    "Silver": 0,
+    "Unranked": 0,
+    "Iron": 3,
+    "Bronze": 15,
+    "Silver": 2,
     "Gold": 1
   },
   "skills": [
@@ -35,22 +35,22 @@
       "name": "Dynamic",
       "category": "Clicking",
       "best_scenario": "VT domiClick Novice S5",
-      "rank": "Iron",
-      "rank_progress": 1.61409091
+      "rank": "Bronze",
+      "rank_progress": 2.95518182
     },
     {
       "name": "Static",
       "category": "Clicking",
       "best_scenario": "VT 1w4ts Novice S5",
-      "rank": "Iron",
-      "rank_progress": 1.73852632
+      "rank": "Bronze",
+      "rank_progress": 2.68568421
     },
     {
       "name": "Linear",
       "category": "Clicking",
       "best_scenario": "VT Frogtagon Novice S5",
-      "rank": "Iron",
-      "rank_progress": 1.33333333
+      "rank": "Bronze",
+      "rank_progress": 2.36363636
     },
     {
       "name": "Precise",
@@ -69,9 +69,9 @@
     {
       "name": "Control",
       "category": "Tracking",
-      "best_scenario": "VT Raw Control Novice S5",
-      "rank": "Bronze",
-      "rank_progress": 2.78588235
+      "best_scenario": "VT Controlsphere Novice S5",
+      "rank": "Silver",
+      "rank_progress": 3.162
     },
     {
       "name": "Speed",
@@ -84,15 +84,15 @@
       "name": "Evasive",
       "category": "Switching",
       "best_scenario": "VT FlyTS Novice S5",
-      "rank": "Bronze",
-      "rank_progress": 2.735
+      "rank": "Silver",
+      "rank_progress": 3.0
     },
     {
       "name": "Stability",
       "category": "Switching",
-      "best_scenario": "VT Penta Bounce Novice S5",
+      "best_scenario": "VT ControlTS Novice S5",
       "rank": "Bronze",
-      "rank_progress": 2.6
+      "rank_progress": 2.885
     }
   ],
   "scenarios": [
@@ -100,10 +100,10 @@
       "name": "VT Pasu Novice S5",
       "category": "Clicking",
       "skill": "Dynamic",
-      "score": 581.32,
+      "score": 617.05,
       "rank": "Iron",
       "rank_index": 1,
-      "rank_progress": 1.25066667,
+      "rank_progress": 1.59095238,
       "thresholds": [
         555,
         660,
@@ -112,115 +112,115 @@
       ],
       "next_rank": "Bronze",
       "next_threshold": 660,
-      "score_to_next": 78.68
+      "score_to_next": 42.95
     },
     {
       "name": "VT Popcorn Novice S5",
       "category": "Clicking",
       "skill": "Dynamic",
-      "score": 420.0,
-      "rank": "Iron",
-      "rank_index": 1,
-      "rank_progress": 1.27272727,
+      "score": 530.0,
+      "rank": "Bronze",
+      "rank_index": 2,
+      "rank_progress": 2.3,
       "thresholds": [
         390,
         500,
         600,
         720
       ],
-      "next_rank": "Bronze",
-      "next_threshold": 500,
-      "score_to_next": 80.0
+      "next_rank": "Silver",
+      "next_threshold": 600,
+      "score_to_next": 70.0
     },
     {
       "name": "VT domiClick Novice S5",
       "category": "Clicking",
       "skill": "Dynamic",
-      "score": 597.55,
-      "rank": "Iron",
-      "rank_index": 1,
-      "rank_progress": 1.61409091,
+      "score": 745.07,
+      "rank": "Bronze",
+      "rank_index": 2,
+      "rank_progress": 2.95518182,
       "thresholds": [
         530,
         640,
         750,
         860
       ],
-      "next_rank": "Bronze",
-      "next_threshold": 640,
-      "score_to_next": 42.45
+      "next_rank": "Silver",
+      "next_threshold": 750,
+      "score_to_next": 4.93
     },
     {
       "name": "VT 1w4ts Novice S5",
       "category": "Clicking",
       "skill": "Static",
-      "score": 890.16,
-      "rank": "Iron",
-      "rank_index": 1,
-      "rank_progress": 1.73852632,
+      "score": 980.14,
+      "rank": "Bronze",
+      "rank_index": 2,
+      "rank_progress": 2.68568421,
       "thresholds": [
         820,
         915,
         1010,
         1110
       ],
-      "next_rank": "Bronze",
-      "next_threshold": 915,
-      "score_to_next": 24.84
+      "next_rank": "Silver",
+      "next_threshold": 1010,
+      "score_to_next": 29.86
     },
     {
       "name": "VT ww5t Novice S5",
       "category": "Clicking",
       "skill": "Static",
-      "score": 970.0,
-      "rank": "Unranked",
-      "rank_index": 0,
-      "rank_progress": 0.97979798,
+      "score": 1020.0,
+      "rank": "Iron",
+      "rank_index": 1,
+      "rank_progress": 1.3,
       "thresholds": [
         990,
         1090,
         1190,
         1290
       ],
-      "next_rank": "Iron",
-      "next_threshold": 990,
-      "score_to_next": 20.0
+      "next_rank": "Bronze",
+      "next_threshold": 1090,
+      "score_to_next": 70.0
     },
     {
       "name": "VT Frogtagon Novice S5",
       "category": "Clicking",
       "skill": "Linear",
-      "score": 660.0,
-      "rank": "Iron",
-      "rank_index": 1,
-      "rank_progress": 1.33333333,
+      "score": 780.0,
+      "rank": "Bronze",
+      "rank_index": 2,
+      "rank_progress": 2.36363636,
       "thresholds": [
         620,
         740,
         850,
         980
       ],
-      "next_rank": "Bronze",
-      "next_threshold": 740,
-      "score_to_next": 80.0
+      "next_rank": "Silver",
+      "next_threshold": 850,
+      "score_to_next": 70.0
     },
     {
       "name": "VT Floating Heads Novice S5",
       "category": "Clicking",
       "skill": "Linear",
-      "score": 338.92,
-      "rank": "Unranked",
-      "rank_index": 0,
-      "rank_progress": 0.90378667,
+      "score": 474.16,
+      "rank": "Bronze",
+      "rank_index": 2,
+      "rank_progress": 2.177,
       "thresholds": [
         375,
         460,
         540,
         640
       ],
-      "next_rank": "Iron",
-      "next_threshold": 375,
-      "score_to_next": 36.08
+      "next_rank": "Silver",
+      "next_threshold": 540,
+      "score_to_next": 65.84
     },
     {
       "name": "VT PGT Novice S5",
@@ -244,28 +244,28 @@
       "name": "VT Snake Track Novice S5",
       "category": "Tracking",
       "skill": "Precise",
-      "score": 2682.0,
-      "rank": "Iron",
-      "rank_index": 1,
-      "rank_progress": 1.80571429,
+      "score": 2794.0,
+      "rank": "Bronze",
+      "rank_index": 2,
+      "rank_progress": 2.11733333,
       "thresholds": [
         2400,
         2750,
         3125,
         3425
       ],
-      "next_rank": "Bronze",
-      "next_threshold": 2750,
-      "score_to_next": 68.0
+      "next_rank": "Silver",
+      "next_threshold": 3125,
+      "score_to_next": 331.0
     },
     {
       "name": "VT Aether Novice S5",
       "category": "Tracking",
       "skill": "Reactive",
-      "score": 1944.0,
+      "score": 2066.0,
       "rank": "Bronze",
       "rank_index": 2,
-      "rank_progress": 2.12571429,
+      "rank_progress": 2.47428571,
       "thresholds": [
         1525,
         1900,
@@ -274,13 +274,13 @@
       ],
       "next_rank": "Silver",
       "next_threshold": 2250,
-      "score_to_next": 306.0
+      "score_to_next": 184.0
     },
     {
       "name": "VT Air Angelic Novice S5",
       "category": "Tracking",
       "skill": "Reactive",
-      "score": 4139.0,
+      "score": 4233.0,
       "rank": "Gold",
       "rank_index": 4,
       "rank_progress": 4,
@@ -298,10 +298,10 @@
       "name": "VT Ground Novice S5",
       "category": "Tracking",
       "skill": "Reactive",
-      "score": 2230.0,
+      "score": 2482.0,
       "rank": "Iron",
       "rank_index": 1,
-      "rank_progress": 1.325,
+      "rank_progress": 1.955,
       "thresholds": [
         2100,
         2500,
@@ -310,16 +310,16 @@
       ],
       "next_rank": "Bronze",
       "next_threshold": 2500,
-      "score_to_next": 270.0
+      "score_to_next": 18.0
     },
     {
       "name": "VT Raw Control Novice S5",
       "category": "Tracking",
       "skill": "Control",
-      "score": 2884.0,
+      "score": 2963.0,
       "rank": "Bronze",
       "rank_index": 2,
-      "rank_progress": 2.78588235,
+      "rank_progress": 2.97176471,
       "thresholds": [
         2125,
         2550,
@@ -328,25 +328,25 @@
       ],
       "next_rank": "Silver",
       "next_threshold": 2975,
-      "score_to_next": 91.0
+      "score_to_next": 12.0
     },
     {
       "name": "VT Controlsphere Novice S5",
       "category": "Tracking",
       "skill": "Control",
-      "score": 2303.0,
-      "rank": "Bronze",
-      "rank_index": 2,
-      "rank_progress": 2.78444444,
+      "score": 2481.0,
+      "rank": "Silver",
+      "rank_index": 3,
+      "rank_progress": 3.162,
       "thresholds": [
         1575,
         1950,
         2400,
         2900
       ],
-      "next_rank": "Silver",
-      "next_threshold": 2400,
-      "score_to_next": 97.0
+      "next_rank": "Gold",
+      "next_threshold": 2900,
+      "score_to_next": 419.0
     },
     {
       "name": "VT DotTS Novice S5",
@@ -388,64 +388,64 @@
       "name": "VT EddieTS Novice S5",
       "category": "Switching",
       "skill": "Speed",
-      "score": 689.0,
-      "rank": "Iron",
-      "rank_index": 1,
-      "rank_progress": 1.54444444,
+      "score": 765.0,
+      "rank": "Bronze",
+      "rank_index": 2,
+      "rank_progress": 2.4375,
       "thresholds": [
         640,
         730,
         810,
         890
       ],
-      "next_rank": "Bronze",
-      "next_threshold": 730,
-      "score_to_next": 41.0
+      "next_rank": "Silver",
+      "next_threshold": 810,
+      "score_to_next": 45.0
     },
     {
       "name": "VT AvasiveTS Novice S5",
       "category": "Switching",
       "skill": "Evasive",
-      "score": 448.5,
-      "rank": "Iron",
-      "rank_index": 1,
-      "rank_progress": 1.40714286,
+      "score": 493.5,
+      "rank": "Bronze",
+      "rank_index": 2,
+      "rank_progress": 2.05833333,
       "thresholds": [
         420,
         490,
         550,
         600
       ],
-      "next_rank": "Bronze",
-      "next_threshold": 490,
-      "score_to_next": 41.5
+      "next_rank": "Silver",
+      "next_threshold": 550,
+      "score_to_next": 56.5
     },
     {
       "name": "VT FlyTS Novice S5",
       "category": "Switching",
       "skill": "Evasive",
-      "score": 489.4,
-      "rank": "Bronze",
-      "rank_index": 2,
-      "rank_progress": 2.735,
+      "score": 500.0,
+      "rank": "Silver",
+      "rank_index": 3,
+      "rank_progress": 3.0,
       "thresholds": [
         420,
         460,
         500,
         535
       ],
-      "next_rank": "Silver",
-      "next_threshold": 500,
-      "score_to_next": 10.6
+      "next_rank": "Gold",
+      "next_threshold": 535,
+      "score_to_next": 35.0
     },
     {
       "name": "VT ControlTS Novice S5",
       "category": "Switching",
       "skill": "Stability",
-      "score": 388.6,
+      "score": 415.4,
       "rank": "Bronze",
       "rank_index": 2,
-      "rank_progress": 2.215,
+      "rank_progress": 2.885,
       "thresholds": [
         340,
         380,
@@ -454,16 +454,16 @@
       ],
       "next_rank": "Silver",
       "next_threshold": 420,
-      "score_to_next": 31.4
+      "score_to_next": 4.6
     },
     {
       "name": "VT Penta Bounce Novice S5",
       "category": "Switching",
       "skill": "Stability",
-      "score": 370.0,
+      "score": 380.0,
       "rank": "Bronze",
       "rank_index": 2,
-      "rank_progress": 2.6,
+      "rank_progress": 2.8,
       "thresholds": [
         290,
         340,
@@ -472,7 +472,7 @@
       ],
       "next_rank": "Silver",
       "next_threshold": 390,
-      "score_to_next": 20.0
+      "score_to_next": 10.0
     }
   ],
   "method": "Overall rank, energy, and leaderboard position are reported by EVXL. Scenario scores and thresholds come from KovaaK's public benchmark endpoint, with scores divided by 100 for display. Skill profile shows the highest scenario rank progress in each skill, interpolated between rank thresholds and capped at Gold. It is not the overall rank formula. This is a captured snapshot, not a live feed or a historical trend."
