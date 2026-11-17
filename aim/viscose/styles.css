@@ -1,0 +1,13 @@
+.rank-lemming { --rank-color: #C5C3F2; color: var(--rank-color); }
+.rank-hare { --rank-color: #B2CBEA; color: var(--rank-color); }
+.rank-ermine { --rank-color: #BAF6FC; color: var(--rank-color); }
+.rank-puffin { --rank-color: #7bcaf0; color: var(--rank-color); }
+.rank-penguin { --rank-color: #6B94DF; color: var(--rank-color); }
+.rank-fox { --rank-color: #a5a3ee; color: var(--rank-color); }
+.rank-mammoth { --rank-color: #caa5ef; color: var(--rank-color); }
+.rank-orca { --rank-color: #C080E4; color: var(--rank-color); }
+.rank-seal { --rank-color: #F5BDE8; color: var(--rank-color); }
+.thresholds { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.skill-list { grid-template-columns: 1fr; }
+.summary { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 600px) { .summary { grid-template-columns: 1fr; } }
