@@ -11,6 +11,7 @@ Source for [modpackdad.gg](https://modpackdad.gg), a dependency-free static site
 - `/ai-editing/` — my AI editing agent package and skills, shared because people asked, with the downloadable Short Video Starter ZIP.
 - `/aim/` — daily aim routine and scenario score medians.
 - `/aim/voltaic/` — Voltaic Season 5.5 Novice rank, skill profile, and scenario thresholds. Refresh the public snapshot with `python3 scripts/refresh-voltaic.py`; the page labels when it was captured and links to EVXL for live results.
+- `/aim/viscose/` — Viscose Season 2 Easier rank and all 39 scenario scores. Refresh with `python3 scripts/refresh-viscose.py`.
 - `/launch/` — an unlinked, keyboard-driven personal start page backed by `launch/bookmarks.json`.
 - `/setlists/` — Selector MPD set guides.
 
