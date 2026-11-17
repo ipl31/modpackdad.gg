@@ -8,7 +8,8 @@
     const date = value => new Intl.DateTimeFormat('en-US', {dateStyle: 'medium', timeStyle: 'short', timeZone: 'UTC'}).format(new Date(value)) + ' UTC';
     const remaining = row => row.next_rank ? row.rank_index + 1 - row.rank_progress : Infinity;
 
-    function renderRadar() {
+    function renderSkills() {
+        const skills = report.skills;
         $('skill-list').innerHTML = skills.map(skill => `<li><span>${escape(skill.name)}</span><strong class="${rankClass(skill.rank)}">${escape(skill.rank)}</strong></li>`).join('');
     }
 
@@ -38,7 +39,7 @@
         $('ranked-count').textContent = `${ranked} / ${report.scenarios.length}`;
         $('snapshot-date').textContent = `Snapshot captured ${date(report.captured_at)}`;
         $('verified-date').textContent = report.score_verified_at ? `EVXL last verified the overall scores ${date(report.score_verified_at)}.` : 'EVXL did not supply an overall score verification date.';
-        renderRadar();
+        renderSkills();
         $('distribution').innerHTML = report.ranks.map(rank => `<div class="distribution-row ${rankClass(rank)}"><span>${escape(rank)}</span><div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width:${report.distribution[rank] / report.scenarios.length * 100}%"></div></div><strong aria-label="${report.distribution[rank]} ${escape(rank)} scenarios">${report.distribution[rank]}</strong></div>`).join('');
         const closest = report.scenarios.filter(row => row.next_rank).sort((a, b) => remaining(a) - remaining(b))[0];
         $('closest-name').textContent = closest.name;
