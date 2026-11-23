@@ -9,6 +9,7 @@
     <title>ModPackDad | Gaming &amp; Creator Tools</title>
     <link rel="icon" type="image/svg+xml" href="./assets/symbol-white.svg">
     <link rel="stylesheet" href="./brand.css">
+    <script type="module" src="./stream-status.js"></script>
 </head>
 <body class="home">
     <a class="skip" href="#main">Skip to content</a>
@@ -16,7 +17,8 @@
         <div class="wrap masthead-inner">
             <a class="identity" href="./"><img src="./assets/symbol-white.svg" width="32" height="32" alt="">ModPackDad</a>
             <nav aria-label="Main navigation">
-                <a href="./live/">Watch live</a>
+                <a href="https://www.twitch.tv/modpackdad">Twitch</a>
+                <a href="https://www.youtube.com/@modpackdad">YouTube</a>
                 <a href="#tools">Tools</a>
             </nav>
         </div>
@@ -29,8 +31,13 @@
                     <h1 id="intro-title">See you in<br>the lobby.</h1>
                     <p>I’m Ken, a dad cruising into his 50s who streams Fortnite, Minecraft, and other content.</p>
                     <div class="actions">
-                        <a class="action" href="./live/">Watch live</a>
+                        <a class="action" href="https://www.twitch.tv/modpackdad">Twitch</a>
                         <a class="action action-outline" href="https://www.youtube.com/@modpackdad">YouTube</a>
+                    </div>
+                    <div class="stream-status">
+                        <span id="stream-status" role="status">Live status unavailable</span>
+                        <a id="watch-twitch" href="https://www.twitch.tv/modpackdad" hidden>Watch live on Twitch</a>
+                        <a id="watch-youtube" href="https://www.youtube.com/@modpackdad/live" hidden>Watch live on YouTube</a>
                     </div>
                 </div>
                 <div class="intro-mark">
@@ -42,12 +49,12 @@
         <section id="tools" class="wrap tools" aria-labelledby="tools-title">
             <h2 id="tools-title">Tools for streamers and gamers</h2>
             <div class="tool-grid">
-                <a href="/botornot/"><h3>BotOrNot</h3><p>Analyze Fortnite replays to spot bot lobbies.</p></a>
-                <a href="/mpd-bot/"><h3>MPD Bot</h3><p>Bring AI-powered chat to your Twitch stream.</p></a>
-                <a href="/mpd-viewer/"><h3>MPD Viewer</h3><p>View and explore Fortnite replay data.</p></a>
-                <a href="/streamerbot-utilities/"><h3>Streamerbot Utilities</h3><p>Utilities and actions for your stream setup.</p></a>
-                <a href="/hardware/"><h3>Stream hardware</h3><p>See the gear I use on stream.</p></a>
-                <a href="/ai-editing/"><h3>AI editing</h3><p>Get the Short Video Starter package.</p></a>
+                <a href="/botornot/"><span class="tool-icon tool-icon--replay" aria-hidden="true"></span><h3>BotOrNot</h3><p>Analyze Fortnite replays to spot bot lobbies.</p></a>
+                <a href="/mpd-bot/"><span class="tool-icon tool-icon--chat" aria-hidden="true"></span><h3>MPD Bot</h3><p>Bring AI-powered chat to your Twitch stream.</p></a>
+                <a href="/mpd-viewer/"><span class="tool-icon tool-icon--viewer" aria-hidden="true"></span><h3>MPD Viewer</h3><p>View and explore Fortnite replay data.</p></a>
+                <a href="/streamerbot-utilities/"><span class="tool-icon tool-icon--workflow" aria-hidden="true"></span><h3>Streamerbot Utilities</h3><p>Utilities and actions for your stream setup.</p></a>
+                <a href="/hardware/"><span class="tool-icon tool-icon--hardware" aria-hidden="true"></span><h3>Stream hardware</h3><p>See the gear I use on stream.</p></a>
+                <a href="/ai-editing/"><span class="tool-icon tool-icon--editing" aria-hidden="true"></span><h3>AI editing</h3><p>Get the Short Video Starter package.</p></a>
             </div>
         </section>
     </main>
