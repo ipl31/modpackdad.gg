@@ -208,30 +208,39 @@ export class LiveRoom extends DurableObject {
     }
   }
 
+  async fetchTwitchStatus() {
+    if (!this.env.TWITCH_CHANNEL_LOGIN) return { state: 'unavailable' };
+    try {
+      const metadata = await this.twitch.fetchStreamMetadata();
+      if (!this.twitchSubscriptionRevoked) {
+        this.twitch.markHealthy(metadata
+          ? 'Twitch stream and EventSub API available.'
+          : 'Twitch API available; channel offline.');
+        this.providerHealth.twitch = this.twitch.getHealth();
+      }
+      return { state: metadata ? 'live' : 'offline', metadata };
+    } catch (error) {
+      if (!this.twitchSubscriptionRevoked) {
+        this.twitch.markDegraded(error.message);
+        this.providerHealth.twitch = this.twitch.getHealth();
+      }
+      return { state: 'unavailable' };
+    }
+  }
+
   async refreshStatus() {
+    const twitchStatus = this.fetchTwitchStatus();
     try {
       const nextStatus = await this.youtube.fetchStatus();
+      const twitch = await twitchStatus;
       if (this.youtubeChatFailureCount === 0 || nextStatus.state !== 'live') {
         this.youtube.markHealthy('Broadcast metadata API available.');
       }
       this.providerHealth.youtube = this.youtube.getHealth();
 
-      try {
-        const twitchMetadata = await this.twitch.fetchStreamMetadata();
-        if (!this.twitchSubscriptionRevoked) {
-          this.twitch.markHealthy(twitchMetadata
-            ? 'Twitch stream and EventSub API available.'
-            : 'Twitch API available; channel offline.');
-          this.providerHealth.twitch = this.twitch.getHealth();
-        }
-        if (nextStatus.broadcast && twitchMetadata) {
-          nextStatus.broadcast.category = twitchMetadata.category || nextStatus.broadcast.category;
-        }
-      } catch (error) {
-        if (!this.twitchSubscriptionRevoked) {
-          this.twitch.markDegraded(error.message);
-          this.providerHealth.twitch = this.twitch.getHealth();
-        }
+      nextStatus.twitchState = twitch.state;
+      if (nextStatus.broadcast && twitch.metadata) {
+        nextStatus.broadcast.category = twitch.metadata.category || nextStatus.broadcast.category;
       }
 
       const nextChatId = nextStatus.state === 'live' ? nextStatus.broadcast?.liveChatId || '' : '';
@@ -253,13 +262,14 @@ export class LiveRoom extends DurableObject {
       return this.status;
     } catch (error) {
       this.recordError('youtube', error);
+      const { state: twitchState } = await twitchStatus;
       if (this.status) {
-        this.status = { ...this.status, stale: true };
+        this.status = { ...this.status, stale: true, twitchState };
         await this.ctx.storage.put({ status: this.status, providerHealth: this.providerHealth });
         this.broadcast({ type: 'status', status: this.status });
         return this.status;
       }
-      this.status = unavailableStatus();
+      this.status = { ...unavailableStatus(), twitchState };
       await this.ctx.storage.put({ status: this.status, providerHealth: this.providerHealth });
       return this.status;
     }
