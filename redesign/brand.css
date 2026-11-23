@@ -56,10 +56,7 @@
 .action:hover { background: white; border-color: white; }
 .action-outline { border-color: currentColor; background: transparent; color: white; }
 .action-outline:hover { color: var(--navy); }
-.music { background: var(--navy); color: white; }
-.music-inner { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding-block: 2rem; }
-.music p { max-width: 49ch; margin-top: .4rem; color: var(--pale); }
-.music h2, .tools h2 { font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.1; letter-spacing: -.045em; }
+.tools h2 { font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.1; letter-spacing: -.045em; }
 .tools { padding-block: clamp(2.75rem, 6vw, 5rem); }
 .tool-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 1.5rem; background: #c8d3ee; border: 1px solid #c8d3ee; }
 .tool-grid a { display: block; padding: 1.25rem; min-height: 8rem; background: white; color: var(--navy); text-decoration: none; }
@@ -72,7 +69,6 @@
 .foot a { color: var(--navy); }
 
 @media (max-width: 51rem) {
-    .music-inner { align-items: flex-start; flex-direction: column; }
     .tool-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 37rem) {
